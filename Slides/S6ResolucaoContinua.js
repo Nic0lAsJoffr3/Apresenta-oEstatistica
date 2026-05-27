@@ -1,14 +1,15 @@
-import { Canvas,  Cores, Fontes, fundo, Texto, FontSizes } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes } from "../files.js";
 let exI = null;
 function ResetFundo() {
     Fundo = null;
 }
 var Fundo = null;
 export function SlideResolucaoContinua(i) {
+    
     if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
+        exI = i
+        ResetFundo();
+    }
     Fundo = fundo(0, Fundo);
 
     Texto(
@@ -17,4 +18,21 @@ export function SlideResolucaoContinua(i) {
         "Resolução de problema (Contínua)",
         [0, Canvas.height / 10]
     );
+
+
+
+    if (i == 0) {
+
+    }
+    else if (i == 1) {
+
+    }
+    else if (i == 2) {
+
+    }
+    else if (i == 3) {
+
+
+    }
+
 }

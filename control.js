@@ -6,12 +6,12 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 9;
+export let slide = 0;
 let canPress = true;
 
 
 
-let maxslide = 17;
+let maxslide = 20;
 function PassarSlide(direction) {
     if (direction == 1 && slide < maxslide) slide++;
     else if (direction == -1 && slide > 0) slide--;
@@ -60,7 +60,7 @@ function Update() {
 
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
 
-    if (slide == 16) {
+    if (slide == 19) {
 
     if (!document.getElementById("iframeSimulador")) {
 
@@ -118,20 +118,23 @@ function Update() {
             SlideModelagemContinua(slide - 5);
             break;
         case 10:
-            SlideResolucaoContinua(slide - 10);
-            break;
         case 11:
-            SlideAplicacaoNaArea(slide - 11);
-            break;
         case 12:
         case 13:
+            SlideResolucaoContinua(slide - 10);
+            break;
         case 14:
+            SlideAplicacaoNaArea(slide - 14);
+            break;
         case 15:
         case 16:
-            SlideLeiGrandesNumeros(slide - 12);
-            break;
         case 17:
-            SlideFontes(slide - 17);
+        case 18:
+        case 19:
+            SlideLeiGrandesNumeros(slide - 15);
+            break;
+        case 20:
+            SlideFontes(slide - 20);
             break;
     }
     requestAnimationFrame(Update);
