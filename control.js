@@ -67,7 +67,7 @@ function Update() {
         const iframe = document.createElement("iframe");
 
         iframe.id = "iframeSimulador";
-        iframe.src = window.location.origin + "/Simulador/index.html";
+        iframe.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/Simulador/index.html";
 
         iframe.style.position = "fixed";
         iframe.style.top = "0";
