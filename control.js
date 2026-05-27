@@ -67,7 +67,7 @@ function Update() {
         const iframe = document.createElement("iframe");
 
         iframe.id = "iframeSimulador";
-        iframe.src = "./Simulador/index.html";
+        iframe.src = "/Simulador/index.html";
 
         iframe.style.position = "fixed";
         iframe.style.top = "0";
