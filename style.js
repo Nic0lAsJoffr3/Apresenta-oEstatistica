@@ -13,7 +13,17 @@ export const Fontes = {
     NormalText: " Roboto ",
     ExemploText: " Roboto ",
 }
+export function GetFontSizes(canvas) {
 
+    const base = Math.min(canvas.width, canvas.height);
+
+    return {
+        Titulo: `${base * 0.08}px`,
+        SubTitulo: `${base * 0.06}px`,
+        NormalText: `${base * 0.04}px`,
+        ExemploText: `${base * 0.03}px`,
+    };
+}
 export const FontSizes = {
     Titulo: " 80px ",
     SubTitulo: " 60px ",
@@ -50,7 +60,7 @@ export function fundo(index, Fundo) {
             }
             for (var i = 0; i < amoutX; i++) {
                 if (y[i] < look[i]) {
-                    y[i] += Math.random()*5;
+                    y[i] += Math.random() * 5;
                 }
                 var spaceX = 2
                 var x = Canvas.width / amoutX - (11 * spaceX)
@@ -366,6 +376,224 @@ export function fundo(index, Fundo) {
             return Fundo;
         }
             break
+
+
+
+
+
+
+
+
+        case 5: {
+
+            if (!Fundo) Fundo = {};
+
+            if (!Fundo.t5) {
+                Fundo.t5 = 0;
+            }
+
+            Fundo.t5 += 0.01;
+
+            const w = Canvas.width;
+            const h = Canvas.height;
+
+            const cell = 12;
+
+            // 🌫️ fundo base extremamente leve
+            ctx.fillStyle = Cores.CianoClaro + "03";
+            ctx.fillRect(0, 0, w, h);
+
+            for (let y = 0; y < h; y += cell) {
+                for (let x = 0; x < w; x += cell) {
+
+                    // 🎲 ruído uniforme controlado
+                    const noise =
+                        (Math.sin(x * 0.02 + Fundo.t5) +
+                            Math.cos(y * 0.02 + Fundo.t5)) * 0.5;
+
+                    // 🔵 intensidade uniforme com leve variação
+                    const alpha = 0.05 + (noise * 0.020);
+
+                    ctx.fillStyle = `rgba(0,240,255,${alpha})`;
+
+                    // pequeno deslocamento uniforme (sem clustering)
+                    const offsetX = (Math.random() - 0.5) * 1.5;
+                    const offsetY = (Math.random() - 0.5) * 1.5;
+
+                    ctx.fillRect(
+                        x + offsetX,
+                        y + offsetY,
+                        2,
+                        2
+                    );
+                }
+            }
+
+            return Fundo;
+        }
+
+        case 6: {
+
+            if (!Fundo) Fundo = {};
+
+            if (!Fundo.t6) {
+                Fundo.t6 = 0;
+            }
+
+            Fundo.t6 += 0.01;
+
+            const w = Canvas.width;
+            const h = Canvas.height;
+
+            const cx = w / 2;
+            const cy = h / 2;
+
+            const focusX = cx + Math.sin(Fundo.t6 * 0.6) * 120;
+            const focusY = cy + Math.cos(Fundo.t6 * 0.5) * 80;
+
+
+            const layers = 2;
+            const linesPerLayer = 15;
+
+            for (let l = 0; l < layers; l++) {
+
+                const speed = 0.2 + l * 0.05;
+
+                ctx.strokeStyle = `rgba(0,240,255,${0.03 + l * 0.008})`;
+                ctx.lineWidth = 1;
+
+                for (let i = 0; i < linesPerLayer; i++) {
+
+                    ctx.beginPath();
+
+                    const baseY = (h / linesPerLayer) * i;
+
+                    for (let x = 0; x <= w; x += 20) {
+
+                        const dx = x - focusX;
+                        const dy = baseY - focusY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        const influence = Math.max(0, 1 - dist / (w * 0.8));
+
+                        const wave =
+                            Math.sin(x * 0.01 + Fundo.t6 * speed + i) * 25;
+
+                        const pull =
+                            Math.sin(Fundo.t6 + dist * 0.01) * 10 * influence;
+
+                        const y = baseY + wave + pull;
+
+                        if (x === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+
+                    ctx.stroke();
+                }
+            }
+
+            return Fundo;
+        }
+
+
+case 7: {
+
+    if (!Fundo?.fract7) {
+
+        Fundo = {
+            t7: 0,
+            fract7: []
+        };
+
+        for (let i = 0; i < 25; i++) {
+
+            Fundo.fract7.push({
+
+                x: Math.random() * Canvas.width,
+                y: Math.random() * Canvas.height,
+
+                size: 40 + Math.random() * 60,
+
+                rot: Math.random() * Math.PI,
+
+                seed: Math.random() * 1000
+            });
+        }
+    }
+
+    Fundo.t7 += 0.004;
+
+    function fract(x, y, size, rot, depth, seed) {
+
+        if (depth <= 0 || size < 3)
+            return;
+
+        const t =
+            Fundo.t7 +
+            seed;
+
+        const sway =
+            Math.sin(t + depth) * 0.2;
+
+        const branches = 3;
+
+        for (let i = 0; i < branches; i++) {
+
+            const angle =
+                rot +
+                sway +
+                ((Math.PI * 2) / branches) * i;
+
+            const x2 =
+                x +
+                Math.cos(angle) * size;
+
+            const y2 =
+                y +
+                Math.sin(angle) * size;
+
+            ctx.strokeStyle =
+                `rgba(0,255,255,${
+                    0.01 + depth * 0.01
+                })`;
+
+            ctx.lineWidth =
+                depth * 0.3;
+
+            ctx.beginPath();
+
+            ctx.moveTo(x, y);
+            ctx.lineTo(x2, y2);
+
+            ctx.stroke();
+
+            fract(
+                x2,
+                y2,
+                size * 0.55,
+                angle,
+                depth - 1,
+                seed + i * 10
+            );
+        }
+    }
+
+    for (let f of Fundo.fract7) {
+
+        fract(
+            f.x,
+            f.y,
+            f.size,
+            f.rot +
+            Math.sin(Fundo.t7 + f.seed) * 0.3,
+            4,
+            f.seed
+        );
+    }
+
+    return Fundo;
+}
+        
     }
 }
 

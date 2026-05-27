@@ -25,7 +25,7 @@ export function SlideIntroducao(i) {
         exI = i
         ResetFundo();
     }
-    Fundo = fundo(0, Fundo);
+    Fundo = fundo(6, Fundo);
 
     Texto(
         Cores.Titulo, FontSizes.Titulo,

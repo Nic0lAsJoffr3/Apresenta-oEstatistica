@@ -6,7 +6,7 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 0;
+export let slide = 9;
 let canPress = true;
 
 
@@ -105,23 +105,23 @@ function Update() {
             break;
         case 2:
         case 3:
-        case 4:
             SlideModelagemDiscreta(slide - 2);
+            break;
+        case 4:
+            SlideResolucaoDiscreta(slide - 4);
             break;
         case 5:
         case 6:
         case 7:
         case 8:
-            SlideResolucaoDiscreta(slide - 5);
-            break;
         case 9:
-            SlideAplicacaoNaArea(slide - 9);
+            SlideModelagemContinua(slide - 5);
             break;
         case 10:
-            SlideModelagemContinua(slide - 10);
+            SlideResolucaoContinua(slide - 10);
             break;
         case 11:
-            SlideResolucaoContinua(slide - 11);
+            SlideAplicacaoNaArea(slide - 11);
             break;
         case 12:
         case 13:
