@@ -6,12 +6,12 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 0;
+export let slide = 23;
 let canPress = true;
 
 
 
-let maxslide = 20;
+let maxslide = 23;
 function PassarSlide(direction) {
     if (direction == 1 && slide < maxslide) slide++;
     else if (direction == -1 && slide > 0) slide--;
@@ -60,42 +60,42 @@ function Update() {
 
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
 
-    if (slide == 19) {
+    if (slide == 22) {
 
-    if (!document.getElementById("iframeSimulador")) {
+        if (!document.getElementById("iframeSimulador")) {
 
-        const iframe = document.createElement("iframe");
+            const iframe = document.createElement("iframe");
 
-        iframe.id = "iframeSimulador";
-        iframe.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/Simulador/index.html";
+            iframe.id = "iframeSimulador";
+            iframe.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/Simulador/index.html";
 
-        iframe.style.position = "fixed";
-        iframe.style.top = "0";
-        iframe.style.left = "0";
-        iframe.style.width = "100vw";
-        iframe.style.height = "100vh";
-        iframe.style.border = "none";
+            iframe.style.position = "fixed";
+            iframe.style.top = "0";
+            iframe.style.left = "0";
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none";
 
-        document.body.appendChild(iframe);
+            document.body.appendChild(iframe);
 
-        window.__iframeCreated = true;
+            window.__iframeCreated = true;
+        }
+        document.querySelectorAll(".buttonLeft, .buttonRight").forEach(element => {
+            element.classList.add("MeioBtn")
+        })
+    } else {
+
+        document.querySelectorAll(".buttonLeft, .buttonRight").forEach(element => {
+            element.classList.remove("MeioBtn")
+        })
+        const iframe = document.getElementById("iframeSimulador");
+
+        if (iframe) {
+            iframe.remove();
+        }
+
+        window.__iframeCreated = false;
     }
-    document.querySelectorAll(".buttonLeft, .buttonRight").forEach(element =>{
-        element.classList.add("MeioBtn")
-    })
-} else {
-
-    document.querySelectorAll(".buttonLeft, .buttonRight").forEach(element =>{
-        element.classList.remove("MeioBtn")
-    })
-    const iframe = document.getElementById("iframeSimulador");
-
-    if (iframe) {
-        iframe.remove();
-    }
-
-    window.__iframeCreated = false;
-}
     switch (slide) {
         case 0: //Fundo 6
             SlideIntroducao(slide);
@@ -107,34 +107,37 @@ function Update() {
         case 3: // Fundo 2
             SlideModelagemDiscreta(slide - 2);
             break;
-        case 4: // Fundo 8
-            SlideResolucaoDiscreta(slide - 4);
-            break;
+        case 4:
         case 5:
         case 6:
-        case 7:
-        case 8:
-        case 9: // Fundo 2
-            SlideModelagemContinua(slide - 5);
+        case 7: // Fundo 8
+            SlideResolucaoDiscreta(slide - 4);
             break;
+        case 8:
+        case 9:
         case 10:
         case 11:
-        case 12:
-        case 13: // Fundo 8
-            SlideResolucaoContinua(slide - 10);
+        case 12: // Fundo 2
+            SlideModelagemContinua(slide - 8);
             break;
-        case 14: // Fundo 1
-            SlideAplicacaoNaArea(slide - 14);
-            break;
+        case 13:
+        case 14:
         case 15:
-        case 16:
-        case 17:
-        case 18: 
-        case 19: // Fundo 4
-            SlideLeiGrandesNumeros(slide - 15);
+        case 16: // Fundo 8
+            SlideResolucaoContinua(slide - 13);
             break;
-        case 20: // Fundo 7
-            SlideFontes(slide - 20);
+        case 17: // Fundo 1
+            SlideAplicacaoNaArea(slide - 17);
+            break;
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+        case 22: // Fundo 4
+            SlideLeiGrandesNumeros(slide - 18);
+            break;
+        case 23: // Fundo 7
+            SlideFontes(slide - 23);
             break;
     }
     requestAnimationFrame(Update);
