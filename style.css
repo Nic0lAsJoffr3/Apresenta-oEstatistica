@@ -1,0 +1,45 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    background-image: linear-gradient(180deg, #121212 50%, #15202B);
+    overflow: hidden;
+}
+canvas{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 0;
+}
+.buttonLeft, .buttonRight{
+    background-color: transparent;
+    border: none;
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+  cursor: none;
+}
+.buttonLeft:focus, .buttonRight:focus{
+    outline: none;
+}
+.buttonRight:hover{
+    border-right: 1px solid #0d3258 ;
+}
+.buttonLeft:hover{
+    border-left: 1px solid #0d3258;
+}
+
+.buttonRight{
+    right: 0;
+}
+.buttonLeft{
+    left: 0;
+}
+.MeioBtn{
+    width: 5vw;
+}
