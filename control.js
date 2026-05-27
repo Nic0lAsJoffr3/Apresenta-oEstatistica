@@ -6,7 +6,7 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 0;
+export let slide = 18;
 let canPress = true;
 
 
@@ -97,43 +97,43 @@ function Update() {
     window.__iframeCreated = false;
 }
     switch (slide) {
-        case 0:
+        case 0: //Fundo 6
             SlideIntroducao(slide);
             break;
-        case 1:
+        case 1: // Fundo 5
             SlideConceito(slide - 1);
             break;
         case 2:
-        case 3:
+        case 3: // Fundo 2
             SlideModelagemDiscreta(slide - 2);
             break;
-        case 4:
+        case 4: // Fundo 8
             SlideResolucaoDiscreta(slide - 4);
             break;
         case 5:
         case 6:
         case 7:
         case 8:
-        case 9:
+        case 9: // Fundo 2
             SlideModelagemContinua(slide - 5);
             break;
         case 10:
         case 11:
         case 12:
-        case 13:
+        case 13: // Fundo 8
             SlideResolucaoContinua(slide - 10);
             break;
-        case 14:
+        case 14: // Fundo 1
             SlideAplicacaoNaArea(slide - 14);
             break;
         case 15:
         case 16:
         case 17:
-        case 18:
-        case 19:
+        case 18: 
+        case 19: // Fundo 4
             SlideLeiGrandesNumeros(slide - 15);
             break;
-        case 20:
+        case 20: // Fundo 7
             SlideFontes(slide - 20);
             break;
     }

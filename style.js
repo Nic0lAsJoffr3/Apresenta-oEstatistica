@@ -69,49 +69,296 @@ export function fundo(index, Fundo) {
             }
             return { saveY: look, atual: y };
             break;
+
+
+
+
         case 1:
 
+            if (!Fundo?.crypto1_1) {
 
-            ctx.fillStyle = Cores.CianoClaro + "04";
-
-            if (!Fundo?.t) {
                 Fundo = {
-                    t: 0
+                    t1_1: 0,
+                    crypto1_1: []
                 };
+
+                const cols_1 = 55;
+
+                for (let i_1 = 0; i_1 < cols_1; i_1++) {
+
+                    Fundo.crypto1_1.push({
+
+                        x_1:
+                            (Canvas.width / cols_1) * i_1,
+
+                        y_1:
+                            Math.random() * Canvas.height,
+
+                        // mais lento
+                        speed_1:
+                            0.2 + Math.random() * 0.8,
+
+                        size_1:
+                            11 + Math.random() * 6,
+
+                        seed_1:
+                            Math.random() * 9999,
+
+                        chars_1:
+                            Array.from(
+                                { length: 26 },
+                                () => {
+
+                                    const list_1 = [
+
+                                        "0", "1",
+
+                                        "A", "B", "C",
+                                        "D", "E", "F",
+
+                                        "#",
+
+                                        "%",
+
+                                        "&", "$", "*"
+                                    ];
+
+                                    return list_1[
+                                        Math.floor(
+                                            Math.random() *
+                                            list_1.length
+                                        )
+                                    ];
+                                }
+                            )
+                    });
+                }
             }
 
-            Fundo.t += 0.005;
+            Fundo.t1_1 += 0.003;
 
-            let w = Canvas.width;
-            let h = Canvas.height;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
 
-            let centerX = w / 2;
+            // rede criptográfica
+            for (
+                let i_1 = 0;
+                i_1 < Fundo.crypto1_1.length;
+                i_1++
+            ) {
 
-            for (let i = 0; i < 16; i++) {
+                const c1_1 =
+                    Fundo.crypto1_1[i_1];
 
-                let yBase = (h / 16) * i;
+                for (
+                    let j_1 = i_1 + 1;
+                    j_1 < Fundo.crypto1_1.length;
+                    j_1++
+                ) {
+
+                    const c2_1 =
+                        Fundo.crypto1_1[j_1];
+
+                    const dx_1 =
+                        c1_1.x_1 - c2_1.x_1;
+
+                    const dist_1 =
+                        Math.abs(dx_1);
+
+                    if (dist_1 < 120) {
+
+                        const alpha_1 =
+                            (1 - dist_1 / 120) * 0.015;
+
+                        ctx.strokeStyle =
+                            Cores.CianoClaro +
+                            Math.floor(
+                                alpha_1 * 255
+                            )
+                                .toString(16)
+                                .padStart(2, "0");
+
+                        ctx.beginPath();
+
+                        ctx.moveTo(
+                            c1_1.x_1,
+                            c1_1.y_1 % Canvas.height
+                        );
+
+                        ctx.lineTo(
+                            c2_1.x_1,
+                            c2_1.y_1 % Canvas.height
+                        );
+
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // colunas criptográficas
+            for (let s_1 of Fundo.crypto1_1) {
+
+                s_1.y_1 += s_1.speed_1;
+
+                if (
+                    s_1.y_1 >
+                    Canvas.height + 500
+                ) {
+
+                    s_1.y_1 = -500;
+                }
+
+                for (
+                    let i_1 = 0;
+                    i_1 < s_1.chars_1.length;
+                    i_1++
+                ) {
+
+                    const y_1 =
+                        s_1.y_1 +
+                        i_1 * (s_1.size_1 * 1.25);
+
+                    if (
+                        y_1 < -40 ||
+                        y_1 > Canvas.height + 40
+                    ) continue;
+
+                    // caracteres mudando
+                    if (
+                        Math.random() > 0.996
+                    ) {
+
+                        const list_1 = [
+
+                            "0", "1",
+
+                            "A", "B", "C",
+                            "D", "E", "F",
+
+                            "#",
+
+                            "%",
+
+                            "&"
+                        ];
+
+                        s_1.chars_1[i_1] =
+                            list_1[
+                            Math.floor(
+                                Math.random() *
+                                list_1.length
+                            )
+                            ];
+                    }
+
+                    let alpha_1 =
+
+                        0.015 +
+
+                        (1 - i_1 / s_1.chars_1.length)
+                        * 0.16;
+
+                    alpha_1 +=
+
+                        Math.sin(
+                            Fundo.t1_1 * 2 +
+                            s_1.seed_1 +
+                            i_1
+                        ) * 0.01;
+
+                    alpha_1 =
+                        Math.max(0.01, alpha_1);
+
+                    ctx.font =
+                        `${s_1.size_1}px Consolas`;
+
+                    // glow
+                    ctx.fillStyle =
+                        Cores.CianoClaro + "04";
+
+                    ctx.fillText(
+                        s_1.chars_1[i_1],
+                        s_1.x_1,
+                        y_1
+                    );
+
+                    // principal
+                    ctx.fillStyle =
+                        Cores.CianoClaro +
+                        Math.floor(
+                            alpha_1 * 255
+                        )
+                            .toString(16)
+                            .padStart(2, "0");
+
+                    ctx.fillText(
+                        s_1.chars_1[i_1],
+                        s_1.x_1,
+                        y_1
+                    );
+
+                    // brilho da cabeça
+                    if (i_1 === 0) {
+
+                        ctx.fillStyle =
+                            Cores.CianoClaro + "25";
+
+                        ctx.fillText(
+                            s_1.chars_1[i_1],
+                            s_1.x_1,
+                            y_1
+                        );
+                    }
+                }
+            }
+
+            // blocos hash
+            for (let i_1 = 0; i_1 < 8; i_1++) {
+
+                const x_1 =
+                    (Canvas.width / 8) * i_1;
+
+                const y_1 =
+
+                    Canvas.height * 0.5 +
+
+                    Math.sin(
+                        Fundo.t1_1 * 0.5 +
+                        i_1
+                    ) * 25;
+
+                ctx.strokeStyle =
+                    Cores.CianoClaro + "05";
+
+                ctx.lineWidth = 1;
+
+                ctx.strokeRect(
+                    x_1,
+                    y_1,
+                    80,
+                    25
+                );
 
                 ctx.beginPath();
-                ctx.strokeStyle = Cores.CianoClaro + "06";
-                ctx.lineWidth = 3;
 
-                for (let x = 0; x <= w; x += 20) {
-                    let distCenter = Math.abs(x - centerX) / centerX;
-                    let amplitude = distCenter * i * 5;
+                ctx.moveTo(
+                    x_1 + 80,
+                    y_1 + 12
+                );
 
-                    let y =
-                        yBase +
-                        Math.sin((x * 0.01) + Fundo.t + i) * amplitude;
-
-                    if (x === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
+                ctx.lineTo(
+                    x_1 + 120,
+                    y_1 + 12
+                );
 
                 ctx.stroke();
             }
-
+            ctx.textAlign = "start";
+            ctx.textBaseline = "alphabetic";
             return Fundo;
-            break;
+
+
+
         case 2:
 
             if (!Fundo?.t) {
@@ -496,104 +743,327 @@ export function fundo(index, Fundo) {
         }
 
 
-case 7: {
+        case 7: {
 
-    if (!Fundo?.fract7) {
+            if (!Fundo?.fract7) {
 
-        Fundo = {
-            t7: 0,
-            fract7: []
-        };
+                Fundo = {
+                    t7: 0,
+                    fract7: []
+                };
 
-        for (let i = 0; i < 25; i++) {
+                for (let i = 0; i < 25; i++) {
 
-            Fundo.fract7.push({
+                    Fundo.fract7.push({
 
-                x: Math.random() * Canvas.width,
-                y: Math.random() * Canvas.height,
+                        x: Math.random() * Canvas.width,
+                        y: Math.random() * Canvas.height,
 
-                size: 40 + Math.random() * 60,
+                        size: 40 + Math.random() * 60,
 
-                rot: Math.random() * Math.PI,
+                        rot: Math.random() * Math.PI,
 
-                seed: Math.random() * 1000
-            });
+                        seed: Math.random() * 1000
+                    });
+                }
+            }
+
+            Fundo.t7 += 0.004;
+
+            function fract(x, y, size, rot, depth, seed) {
+
+                if (depth <= 0 || size < 3)
+                    return;
+
+                const t =
+                    Fundo.t7 +
+                    seed;
+
+                const sway =
+                    Math.sin(t + depth) * 0.2;
+
+                const branches = 3;
+
+                for (let i = 0; i < branches; i++) {
+
+                    const angle =
+                        rot +
+                        sway +
+                        ((Math.PI * 2) / branches) * i;
+
+                    const x2 =
+                        x +
+                        Math.cos(angle) * size;
+
+                    const y2 =
+                        y +
+                        Math.sin(angle) * size;
+
+                    ctx.strokeStyle =
+                        `rgba(0,255,255,${0.01 + depth * 0.01
+                        })`;
+
+                    ctx.lineWidth =
+                        depth * 0.3;
+
+                    ctx.beginPath();
+
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x2, y2);
+
+                    ctx.stroke();
+
+                    fract(
+                        x2,
+                        y2,
+                        size * 0.55,
+                        angle,
+                        depth - 1,
+                        seed + i * 10
+                    );
+                }
+            }
+
+            for (let f of Fundo.fract7) {
+
+                fract(
+                    f.x,
+                    f.y,
+                    f.size,
+                    f.rot +
+                    Math.sin(Fundo.t7 + f.seed) * 0.3,
+                    4,
+                    f.seed
+                );
+            }
+
+            return Fundo;
         }
-    }
 
-    Fundo.t7 += 0.004;
+        case 8: {
 
-    function fract(x, y, size, rot, depth, seed) {
+            if (!Fundo?.math9) {
 
-        if (depth <= 0 || size < 3)
-            return;
+                Fundo = {
+                    t9: 0,
+                    math9: []
+                };
 
-        const t =
-            Fundo.t7 +
-            seed;
+                const symbols = [
 
-        const sway =
-            Math.sin(t + depth) * 0.2;
+                    "∫",
+                    "∑",
+                    "π",
+                    "∞",
+                    "Δ",
+                    "λ",
+                    "σ",
+                    "μ",
+                    "∂",
+                    "√",
+                    "ƒ",
+                    "dx",
+                    "dy",
+                    "∇",
+                    "∈",
+                    "≈"
+                ];
 
-        const branches = 3;
+                for (let i = 0; i < 80; i++) {
 
-        for (let i = 0; i < branches; i++) {
+                    Fundo.math9.push({
 
-            const angle =
-                rot +
-                sway +
-                ((Math.PI * 2) / branches) * i;
+                        x:
+                            Math.random() * Canvas.width,
 
-            const x2 =
-                x +
-                Math.cos(angle) * size;
+                        y:
+                            Math.random() * Canvas.height,
 
-            const y2 =
-                y +
-                Math.sin(angle) * size;
+                        size:
+                            14 + Math.random() * 38,
 
-            ctx.strokeStyle =
-                `rgba(0,255,255,${
-                    0.01 + depth * 0.01
-                })`;
+                        speed:
+                            0.2 + Math.random() * 0.6,
 
-            ctx.lineWidth =
-                depth * 0.3;
+                        symbol:
+                            symbols[
+                            Math.floor(
+                                Math.random() *
+                                symbols.length
+                            )
+                            ],
 
-            ctx.beginPath();
+                        seed:
+                            Math.random() * 9999,
 
-            ctx.moveTo(x, y);
-            ctx.lineTo(x2, y2);
+                        rot:
+                            Math.random() * Math.PI * 2
+                    });
+                }
+            }
 
-            ctx.stroke();
+            Fundo.t9 += 0.003;
 
-            fract(
-                x2,
-                y2,
-                size * 0.55,
-                angle,
-                depth - 1,
-                seed + i * 10
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            for (let m of Fundo.math9) {
+
+                // movimento fluido
+                m.y += m.speed;
+
+                m.x +=
+                    Math.sin(
+                        Fundo.t9 +
+                        m.seed
+                    ) * 0.4;
+
+                // wrap
+                if (m.y > Canvas.height + 50) {
+
+                    m.y = -50;
+                    m.x =
+                        Math.random() * Canvas.width;
+                }
+
+                const pulse =
+
+                    1 +
+
+                    Math.sin(
+                        Fundo.t9 * 2 +
+                        m.seed
+                    ) * 0.08;
+
+                const alpha =
+                    0.03 +
+                    Math.sin(
+                        Fundo.t9 +
+                        m.seed
+                    ) * 0.015;
+
+                ctx.save();
+
+                ctx.translate(
+                    m.x,
+                    m.y
+                );
+
+                ctx.rotate(
+                    m.rot +
+                    Fundo.t9 * 0.05
+                );
+
+                // glow
+                ctx.fillStyle =
+                    Cores.CianoClaro + "08";
+
+                ctx.font =
+                    `${m.size * pulse}px Arial`;
+
+                ctx.fillText(
+                    m.symbol,
+                    0,
+                    0
+                );
+
+                // principal
+                ctx.fillStyle =
+                    Cores.CianoClaro +
+                    Math.floor(
+                        alpha * 255
+                    )
+                        .toString(16)
+                        .padStart(2, "0");
+
+                ctx.fillText(
+                    m.symbol,
+                    0,
+                    0
+                );
+
+                ctx.restore();
+            }
+
+            // curvas matemáticas suaves
+            for (let i = 0; i < 5; i++) {
+
+                ctx.beginPath();
+
+                for (
+                    let x = 0;
+                    x <= Canvas.width;
+                    x += 12
+                ) {
+
+                    const y =
+
+                        Canvas.height * 0.5 +
+
+                        Math.sin(
+                            x * 0.004 +
+                            Fundo.t9 +
+                            i
+                        ) *
+
+                        40 *
+
+                        Math.cos(
+                            Fundo.t9 * 0.5 +
+                            i
+                        );
+
+                    if (x === 0)
+                        ctx.moveTo(x, y);
+                    else
+                        ctx.lineTo(x, y);
+                }
+
+                ctx.strokeStyle =
+                    Cores.CianoClaro + "06";
+
+                ctx.lineWidth = 1;
+
+                ctx.stroke();
+            }
+
+            // névoa matemática
+            const grad =
+                ctx.createRadialGradient(
+
+                    Canvas.width / 2,
+                    Canvas.height / 2,
+
+                    0,
+
+                    Canvas.width / 2,
+                    Canvas.height / 2,
+
+                    Canvas.width * 0.7
+                );
+
+            grad.addColorStop(
+                0,
+                Cores.CianoClaro + "08"
             );
+
+            grad.addColorStop(
+                1,
+                "#00000000"
+            );
+
+            ctx.fillStyle = grad;
+
+            ctx.fillRect(
+                0,
+                0,
+                Canvas.width,
+                Canvas.height
+            );
+
+            return Fundo;
         }
-    }
 
-    for (let f of Fundo.fract7) {
-
-        fract(
-            f.x,
-            f.y,
-            f.size,
-            f.rot +
-            Math.sin(Fundo.t7 + f.seed) * 0.3,
-            4,
-            f.seed
-        );
-    }
-
-    return Fundo;
-}
-        
     }
 }
 

@@ -5,11 +5,7 @@ function ResetFundo() {
 }
 var Fundo = null;
 export function SlideFontes(i) {
-    if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-    Fundo = fundo(0, Fundo);
+    Fundo = fundo(7, Fundo);
 
     Texto(
         Cores.Titulo, FontSizes.Titulo,

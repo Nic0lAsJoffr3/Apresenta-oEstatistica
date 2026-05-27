@@ -6,12 +6,8 @@ function ResetFundo() {
 }
 var Fundo = null;
 export function SlideModelagemContinua(i) {
+    Fundo = fundo(2, Fundo);
     if (i == 0) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-        Fundo = fundo(3, Fundo);
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -23,31 +19,27 @@ export function SlideModelagemContinua(i) {
             Cores.NormalText, FontSizes.NormalText,
             Fontes.NormalText, "left",
             "Na modelagem contínua não conseguimos atribuir\nprobabilidade a cada valor individual;\n\n[0 , 1]\n0.1 , 0.2 , 0.3 … 0.9 , 1\n0.01 , 0.02 , 0.03 … 0.09, 1\n\n0 - Ꝏ - 1",
-            [Canvas.width / 6, Canvas.height / 10 * 3], 50
+            [Canvas.width / 10, Canvas.height / 10 * 3], 50
         );
 
         Texto(
             Cores.SubTitulo, FontSizes.SubTitulo,
             Fontes.SubTitulo, "center",
             "P(X = x) → 0",
-            [Canvas.width / 10 * 7, Canvas.height / 10 * 8]
+            [Canvas.width / 10 * 7, Canvas.height / 10 * 8.3]
         );
 
         Texto(
             Cores.SubTitulo, FontSizes.SubTitulo,
             Fontes.SubTitulo, "center",
             "P(X = x) = 0",
-            [Canvas.width / 10 * 3, Canvas.height / 10 * 8]
+            [Canvas.width / 10 * 3, Canvas.height / 10 * 8.3]
         );
 
 
     }
     else if (i == 1) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-        Fundo = fundo(5, Fundo);
+        
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -59,22 +51,18 @@ export function SlideModelagemContinua(i) {
             Cores.SubTitulo, FontSizes.SubTitulo,
             Fontes.SubTitulo, "left",
             "Ao invés disso, utilizamos a densidade da\nprobabilidade",
-            [Canvas.width / 6, Canvas.height / 10 * 4], 60
+            [Canvas.width / 20, Canvas.height / 10 * 4], 60
         );
         Texto(
             Cores.SubTitulo, FontSizes.SubTitulo,
             Fontes.SubTitulo, "left",
             "Dessa forma, uma distribuição uniforme contínua é\naquela em que todos os pontos possuem a mesma\ndensidade de probabilidade",
-            [Canvas.width / 6, Canvas.height / 10 * 6], 60
+            [Canvas.width / 20, Canvas.height / 10 * 6], 60
         );
     }
 
     else if (i == 2) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-        Fundo = fundo(1, Fundo);
+        
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -88,11 +76,7 @@ export function SlideModelagemContinua(i) {
     }
 
     else if (i == 3) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-        Fundo = fundo(2, Fundo);
+       
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -106,11 +90,7 @@ export function SlideModelagemContinua(i) {
     }
 
     else if (i == 4) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-        Fundo = fundo(7, Fundo);
+        
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -215,12 +195,12 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 6, Canvas.height / 10 * 3]
+        var [x, y] = [Canvas.width / 10, Canvas.height / 10 * 2.5]
 
         ctx.save()
-        ctx.scale(1.4, 1.4)
-        x /= 1.4;
-        y /= 1.4
+        ctx.scale(1.3, 1.3)
+        x /= 1.3;
+        y /= 1.3
         ctx.fillText("P( a ≤ X ≤ b) = ", x, y)
         x += 220
         ctx.font = "20px arial bold italic"
@@ -367,7 +347,7 @@ function formula(i) {
         var [x, y] = [Canvas.width / 10 * 1.5, Canvas.height / 10 * 3]
 
         ctx.save()
-        ctx.scale(1.4,1.4)
+        ctx.scale(1.4, 1.4)
         x /= 1.4
         y /= 1.4
         ctx.font = "30px "
@@ -445,14 +425,14 @@ function formula(i) {
         ctx.fillText("(", 0, 0)
         ctx.fillText(")", 70, 0)
         ctx.restore()
-        x+= 230
+        x += 230
         ctx.fillText("X³", x + 165, y - 25)
         ctx.fillText("b - a", x + 145, y + 25)
         ctx.beginPath()
         ctx.moveTo(x + 135, y - 10)
         ctx.lineTo(x + 210, y - 10)
         ctx.stroke()
-        x+= 85
+        x += 85
         ctx.font = "20px arial"
         ctx.fillText("a", x + 15 + 145, y + 20)
         ctx.fillText("b", x + 15 + 145, y - 30)

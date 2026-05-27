@@ -11,7 +11,6 @@ var SizeBarValor5 = new Array(10).fill(0)
 let mediaAmostral = 0;
 let exI = null;
 function ResetFundo() {
-    Fundo = null;
     Dado = null
 
     SizeBarValor = new Array(10).fill(0)
@@ -25,12 +24,14 @@ function ResetFundo() {
 
 ResetFundo();
 export function SlideLeiGrandesNumeros(i) {
+
+    Fundo = fundo(4, Fundo);
+
     if (i == 0) {
         if (exI != i) {
             exI = i
             ResetFundo();
         }
-        Fundo = fundo(0, Fundo);
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -51,7 +52,6 @@ export function SlideLeiGrandesNumeros(i) {
             exI = i
             ResetFundo();
         }
-        Fundo = fundo(1, Fundo);
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -62,9 +62,9 @@ export function SlideLeiGrandesNumeros(i) {
 
         Texto(
             Cores.NormalText, FontSizes.NormalText,
-            Fontes.NormalText, "center",
-            "Conforme o número de amostras aumenta, a média amostral se aproxima do valor esperado.",
-            [Canvas.width / 2, Canvas.height / 10 * 2.25]
+            Fontes.NormalText, "left",
+            "Conforme o número de amostras aumenta, \na média amostral se aproxima do valor esperado.",
+            [Canvas.width / 10, Canvas.height / 10 * 2.25]
         );
 
         Grafico(0)
@@ -92,12 +92,11 @@ export function SlideLeiGrandesNumeros(i) {
 
     }
     else if (i == 2) {
+
         if (exI != i) {
             exI = i
             ResetFundo();
         }
-        Fundo = fundo(2, Fundo);
-
         // Titulo e Subtitulo
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -136,7 +135,6 @@ export function SlideLeiGrandesNumeros(i) {
             exI = i
             ResetFundo();
         }
-        Fundo = fundo(3, Fundo);
 
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -158,7 +156,7 @@ export function SlideLeiGrandesNumeros(i) {
         // Grafico em baixo
         Formula(3);
 
-    
+
         Grafico(2);
     }
 
@@ -167,7 +165,6 @@ export function SlideLeiGrandesNumeros(i) {
             exI = i
             ResetFundo();
         }
-        Fundo = fundo(4, Fundo);
 
         // Iframe Desenhado em control.js
     }
@@ -238,6 +235,7 @@ function Grafico(i) {
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 5
             ctx.stroke()
+
             break;
         case 1:
             ctx.fillStyle = Cores.CianoClaro
@@ -292,6 +290,9 @@ function Grafico(i) {
             ctx.stroke()
             break;
         case 2:
+            ctx.save()
+            ctx.translate(0, Canvas.height / 10*1.5)
+            ctx.scale(0.85, 0.85)
             ctx.fillStyle = Cores.CianoClaro
             var SizeBarBaseValue = [
                 200,
@@ -305,6 +306,9 @@ function Grafico(i) {
                 [12, 45, 58, 33, 60, 55, 180, 300, 210, 150
                 ]
             var xB = 100
+
+            ctx.save()
+            ctx.translate(-Canvas.width / 15, 0)
             for (var i = 0; i < 6; i++) {
                 if (SizeBarValor4[i] < SizeBarBaseValue[i]) SizeBarValor4[i] += Math.random() * 5
                 else SizeBarValor4[i] = SizeBarBaseValue[i]
@@ -322,7 +326,16 @@ function Grafico(i) {
                     [(Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i) + 50, Canvas.height - SizeBarValor4[i] - 60]
                 )
             }
+            ctx.beginPath()
+            ctx.strokeStyle = Cores.Red
+            ctx.lineWidth = 3
+            ctx.moveTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 25)
+            ctx.lineTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 395)
+            ctx.stroke()
+            ctx.restore()
 
+            ctx.save()
+            ctx.translate(Canvas.width / 5, 0)
             for (var i = 0; i < 10; i++) {
                 if (SizeBarValor5[i] < SizeBarBaseValue2[i]) SizeBarValor5[i] += Math.random() * 5
                 else SizeBarValor5[i] = SizeBarBaseValue2[i]
@@ -351,16 +364,8 @@ function Grafico(i) {
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 4
             ctx.moveTo(Canvas.width - ((Canvas.width - 40 * (10 - 2.95) * 2) / 16 + (50 * (10 - 2.95) * 2 + (20 * (10)) * 2)) / 2, Canvas.height - 390)
-            ctx.lineTo(Canvas.width - ((Canvas.width - 40 * (10 - 2.95) * 2) / 16 + (50 * (10 - 2.95) * 2 + (20 * (10)) * 2 )) / 2, Canvas.height - 45)
+            ctx.lineTo(Canvas.width - ((Canvas.width - 40 * (10 - 2.95) * 2) / 16 + (50 * (10 - 2.95) * 2 + (20 * (10)) * 2)) / 2, Canvas.height - 45)
             ctx.stroke()
-
-            ctx.beginPath()
-            ctx.strokeStyle = Cores.Red
-            ctx.lineWidth = 3
-            ctx.moveTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6) ) / 2, Canvas.height - 25)
-            ctx.lineTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6) ) / 2, Canvas.height - 395)
-            ctx.stroke()
-
             Texto(
                 Cores.CianoClaro, "20px",
                 Fontes.ExemploText, "center",
@@ -368,14 +373,16 @@ function Grafico(i) {
                 [Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * i + (20 * i) - 60), Canvas.height - 15]
             )
 
+            ctx.restore();
 
+            ctx.restore()
             break;
     }
 }
 function Formula(i) {
     switch (i) {
         case 0:
-            var [xD, yD] = [Canvas.width / 50 * 7, Canvas.height / 10 * 3]
+            var [xD, yD] = [Canvas.width / 10 * 2, Canvas.height / 10 * 3]
             ctx.font = "30px arial"
             ctx.fillStyle = "white"
 
@@ -391,7 +398,7 @@ function Formula(i) {
             ctx.lineTo(xD + 80, yD - 10)
             ctx.stroke()
             ctx.textAlign = "left"
-            xD = Canvas.width / 50 * 7
+            xD = Canvas.width / 10 * 2
             yD = Canvas.height / 10 * 4
 
 
@@ -413,7 +420,7 @@ function Formula(i) {
             var xB = 100
             ctx.textAlign = "left"
             xD = (Canvas.width + 100 * 6) / 16
-            yD = Canvas.height / 10 * 6.5
+            yD = Canvas.height / 10 * 6
             ctx.fillText("μ = ", xD, yD)
             xD += 60
             ctx.fillText("1 + 6", xD, yD - 20)
@@ -453,8 +460,8 @@ function Formula(i) {
 
             ctx.textAlign = "left"
             ctx.fillStyle = Cores.CianoClaro
-            xD = (Canvas.width + 50 * 10) / 16 * 7.6
-            yD = Canvas.height / 10 * 6.5
+            xD = (Canvas.width + 50 * 5) / 16 * 7.6
+            yD = Canvas.height / 10 * 6
             ctx.fillText("μ = ", xD, yD)
             xD += 60
             ctx.fillText("0 + 1", xD, yD - 20)
@@ -487,29 +494,18 @@ function Formula(i) {
             ctx.stroke()
             break;
         case 2:
-            
+
             var xB2 = Canvas.width / 10 * 1.3
             var x_w_B2 = Canvas.width / 10 * 5.35
             var yB2 = Canvas.height / 10 * 2.55
-            Texto(
-                Cores.ExemploText, FontSizes.ExemploText,
-                Fontes.ExemploText, "center",
-                "Média amostral: ",
-                [x_w_B2+165, Canvas.height / 10 * 3.3]
-            );
-             Texto(
-                Cores.ExemploText, FontSizes.ExemploText,
-                Fontes.ExemploText, "center",
-                "Média amostral: ",
-                [xB2-55, Canvas.height / 10 * 3.3]
-            );
+
             ctx.fillStyle = "white"
             ctx.font = "25px arial"
             ctx.textAlign = "center"
 
- ctx.save();
+            ctx.save();
             ctx.scale(1.3, 1.3)
-            ctx.fillText("X   = ", x_w_B2 + 20, yB2)
+            ctx.fillText("Média amostral: X   = ", x_w_B2 - 72, yB2)
 
             ctx.font = "15px arial"
             ctx.fillText("n", x_w_B2 + 15, yB2 + 3)
@@ -546,7 +542,7 @@ function Formula(i) {
 
             ctx.save();
             ctx.scale(1.3, 1.3)
-            ctx.fillText("X   = ", xB2 + 20, yB2)
+            ctx.fillText("Média amostral: X   = ", xB2 - 73, yB2)
 
             ctx.font = "15px arial"
             ctx.fillText("n", xB2 + 15, yB2 + 3)
@@ -588,7 +584,7 @@ function Formula(i) {
             ctx.font = "25px arial"
             ctx.textAlign = "center"
             var xB2 = Canvas.width / 10 * 0.5
-            var yB2 = Canvas.height / 10 * 6
+            var yB2 = Canvas.height / 10 * 5.7
             ctx.save();
             ctx.scale(0.9, 0.9)
             ctx.fillText("X   = ", xB2 + 20, yB2)
@@ -684,10 +680,10 @@ function Formula(i) {
             ctx.font = "25px arial"
             ctx.textAlign = "center"
             var xB2 = Canvas.width / 10 * 7
-            var yB2 = Canvas.height / 10 * 6
+            var yB2 = Canvas.height / 10 * 5.7
             ctx.save();
             ctx.scale(0.9, 0.9)
-            
+
             ctx.fillText("X   = ", xB2 + 20, yB2)
 
             ctx.font = "15px arial"
