@@ -98,11 +98,11 @@ export function getScreenScale() {
     return Math.min(scaleW, scaleH);
 }
 
-export let VS = getScreenScale();
+export let VS = 1;
 
 window.addEventListener("resize", () => {
 
-    VS = getScreenScale();
+    VS = 1;
 });
 
 // START
