@@ -6,7 +6,7 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 36;
+export let slide = 0;
 let canPress = true;
 
 
