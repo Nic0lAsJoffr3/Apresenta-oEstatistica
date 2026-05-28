@@ -1,26 +1,5 @@
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, Maquina, Chave, ChaveOuro, Maquina2, Chat, Cadeado, AndrawYao, SetaCurvadaVermelha, SetaCurvadaVerde } from "../files.js";
 
-const Maquina = new Image();
-Maquina.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Maquina.png";
-const Chave = new Image();
-Chave.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Chave.png";
-const ChaveOuro = new Image();
-ChaveOuro.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/ChaveDourada.png";
-const Maquina2 = new Image();
-Maquina2.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Maquina2.png";
-const Chat = new Image();
-Chat.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Chat.png";
-const Cadeado = new Image();
-Cadeado.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Cadeados.png";
-
-const AndrawYao = new Image();
-AndrawYao.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg";
-
-const SetaCurvadaVermelha = new Image();
-SetaCurvadaVermelha.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/SetaCurvadaVermelha.svg";
-
-const SetaCurvadaVerde = new Image();
-SetaCurvadaVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/SetaCurvadaVerde.svg";
 
 let exI = null;
 function ResetFundo() {
@@ -235,7 +214,7 @@ function imagem(i) {
         x /= 1.2
         y /= 1.2
         ctx.save()
-        ctx.scale(1.2,1.2)
+        ctx.scale(1.2, 1.2)
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
@@ -268,18 +247,18 @@ function imagem(i) {
         ctx.restore()
     }
     if (i == 6) {
-        var [x, y] = [Canvas.width - Canvas.width / 20-600, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width - Canvas.width / 20 - 600, Canvas.height / 10 * 2.5]
         x /= 1.2
         y /= 1.2
         ctx.save()
-        ctx.scale(1.2,1.2)
+        ctx.scale(1.2, 1.2)
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
         ctx.drawImage(Maquina, x + 25, y + 50, 400, 400);
         ctx.drawImage(ChaveOuro, x + 300, y + 320, 60, 60);
         ctx.save()
-        ctx.translate(x-325, y+350)
+        ctx.translate(x - 325, y + 350)
         ctx.rotate(-Math.PI / 2)
         imageSeta(0, 0, 70, "#ffe633")
         ctx.restore()
