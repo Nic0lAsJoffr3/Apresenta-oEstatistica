@@ -17,10 +17,10 @@ const AndrawYao = new Image();
 AndrawYao.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg";
 
 const SetaCurvadaVermelha = new Image();
-SetaCurvadaVermelha.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg/IMG/SetaCurvadaVermelha.svg";
+SetaCurvadaVermelha.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/SetaCurvadaVermelha.svg";
 
 const SetaCurvadaVerde = new Image();
-SetaCurvadaVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg/IMG/SetaCurvadaVerde.svg";
+SetaCurvadaVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/SetaCurvadaVerde.svg";
 
 let exI = null;
 function ResetFundo() {
