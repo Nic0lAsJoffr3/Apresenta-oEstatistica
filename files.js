@@ -24,15 +24,15 @@ export const SetaCurvadaVerde = new Image();
 SetaCurvadaVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/SetaCurvadaVerde.svg";
 
 export const HomemLaranja = new Image()
-HomemLaranja.src = "../IMG/HomemLaranja.png"
+HomemLaranja.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/HomemLaranja.png"
 export const HomemVerde = new Image()
-HomemVerde.src = "../IMG/HomemVerde.png"
+HomemVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/homemVerde.png"
 export const Servidor = new Image()
-Servidor.src = "../IMG/Servidor.png"
+Servidor.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Servidor.png"
 export const Certo = new Image()
-Certo.src = "../IMG/certo.png"
+Certo.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/certo.png"
 export const Errado = new Image()
-Errado.src = "../IMG/x.svg"
+Errado.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/x.svg"
 
 
 
