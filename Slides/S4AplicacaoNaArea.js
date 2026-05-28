@@ -1,26 +1,26 @@
 import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
 
 const Maquina = new Image();
-Maquina.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/Maquina.png";
+Maquina.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Maquina.png";
 const Chave = new Image();
-Chave.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/Chave.png";
+Chave.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Chave.png";
 const ChaveOuro = new Image();
-ChaveOuro.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/ChaveDourada.png";
+ChaveOuro.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/ChaveDourada.png";
 const Maquina2 = new Image();
-Maquina2.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/Maquina2.png";
+Maquina2.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Maquina2.png";
 const Chat = new Image();
-Chat.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/Chat.png";
+Chat.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Chat.png";
 const Cadeado = new Image();
-Cadeado.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/Cadeados.png";
+Cadeado.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/Cadeados.png";
 
 const AndrawYao = new Image();
-AndrawYao.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica//IMG/andrawyao.jpg";
+AndrawYao.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg";
 
 const SetaCurvadaVermelha = new Image();
-SetaCurvadaVermelha.src = "../IMG/SetaCurvadaVermelha.svg";
+SetaCurvadaVermelha.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg/IMG/SetaCurvadaVermelha.svg";
 
 const SetaCurvadaVerde = new Image();
-SetaCurvadaVerde.src = "../IMG/SetaCurvadaVerde.svg";
+SetaCurvadaVerde.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/andrawyao.jpg/IMG/SetaCurvadaVerde.svg";
 
 let exI = null;
 function ResetFundo() {
