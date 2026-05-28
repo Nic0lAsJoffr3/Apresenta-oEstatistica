@@ -1,4 +1,4 @@
-import { Canvas, Cores, ctx, CuboDado, Fontes, FontSizes, fundo, Texto } from "../files.js";
+import { Canvas, Cores, ctx, CuboDado, Fontes, FontSizes, fundo, Texto, VS } from "../files.js";
 
 var Fundo = null;
 var Dado = null
@@ -22,11 +22,22 @@ function ResetFundo() {
 }
 
 
+const En = Array.from({ length: 400 }, (_, n) => {
+    const base = 1 / Math.sqrt(n + 1);
+
+    // ruído pequeno que diminui com n
+    const noise = (Math.random() - 0.5) * (0.6 / Math.sqrt(n + 1));
+
+    return Math.abs(base + noise);
+});
+
+
 ResetFundo();
 export function SlideLeiGrandesNumeros(i) {
 
     Fundo = fundo(4, Fundo);
-
+    ctx.save()
+    ctx.scale(VS, VS)
     if (i == 0) {
         if (exI != i) {
             exI = i
@@ -73,21 +84,21 @@ export function SlideLeiGrandesNumeros(i) {
             Cores.Red, FontSizes.NormalText,
             Fontes.NormalText, "right",
             "Valor Esperado",
-            [Canvas.width / 4, Canvas.height - 275]
+            [Canvas.width / 4, (Canvas.height - 275)]
         );
 
         Texto(
             Cores.CianoClaro, FontSizes.NormalText,
             Fontes.NormalText, "center",
             "Poucas Amostras",
-            [Canvas.width / 4 + 275, Canvas.height - 480]
+            [(Canvas.width / 4 + 275), Canvas.height - 480]
         );
 
         Texto(
             Cores.CianoClaro, FontSizes.NormalText,
             Fontes.NormalText, "center",
             "Muitas Amostras",
-            [Canvas.width / 8 * 5 + 275, Canvas.height - 480]
+            [(Canvas.width / 8 * 5 + 275), Canvas.height - 480]
         );
 
     }
@@ -161,17 +172,13 @@ export function SlideLeiGrandesNumeros(i) {
     }
 
     else if (i == 4) {
-        if (exI != i) {
-            exI = i
-            ResetFundo();
-        }
-
-        // Iframe Desenhado em control.js
+        Grafico(3)
     }
+    ctx.restore()
 }
 function DesenharBarras(x, y, plusY = 0, sizeX = 100) {
 
-    ctx.fillRect(x, Canvas.height - plusY - y, sizeX, y)
+    ctx.fillRect(x, Canvas.height - plusY - y * VS, sizeX * VS, y * VS)
 }
 let dados = [];
 
@@ -179,11 +186,11 @@ let dados = [];
 
 function animDado() {
     if (dados.length <= 0) {
-        dados[0] = [Canvas.width / 13, Canvas.height / 3, Math.floor(Math.random() * 6 + 1), 0.5, 10, 0]
-        dados[1] = [Canvas.width / 1.15, Canvas.height / 4, Math.floor(Math.random() * 6 + 1), 0.4, 5, 0]
-        dados[2] = [Canvas.width / 10, Canvas.height / 1.3, Math.floor(Math.random() * 6 + 1), 0.45, 4, 0]
-        dados[3] = [Canvas.width / 1.3, Canvas.height / 1.4, Math.floor(Math.random() * 6 + 1), 0.53, 15, 0]
-        dados[4] = [Canvas.width / 2, Canvas.height / 1.7, Math.floor(Math.random() * 6 + 1), 0.7, 3, 0]
+        dados[0] = [Canvas.width / 13 / VS, Canvas.height / 3 / VS, Math.floor(Math.random() * 6 + 1), 0.5 / VS, 10, 0]
+        dados[1] = [Canvas.width / 1.15 / VS, Canvas.height / 4 / VS, Math.floor(Math.random() * 6 + 1), 0.4 / VS, 5, 0]
+        dados[2] = [Canvas.width / 10 / VS, Canvas.height / 1.3 / VS, Math.floor(Math.random() * 6 + 1), 0.45 / VS, 4, 0]
+        dados[3] = [Canvas.width / 1.3 / VS, Canvas.height / 1.4 / VS, Math.floor(Math.random() * 6 + 1), 0.53 / VS, 15, 0]
+        dados[4] = [Canvas.width / 2 / VS, Canvas.height / 1.7 / VS, Math.floor(Math.random() * 6 + 1), 0.7 / VS, 3, 0]
     }
     else {
         ctx.strokeStyle = Cores.CianoClaro;
@@ -216,7 +223,7 @@ function animDado() {
 
 function Grafico(i) {
 
-    ctx.textBaseline = "baseline";
+    ctx.textBaseline = "alphabetic";
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     switch (i) {
         case 0:
@@ -226,15 +233,15 @@ function Grafico(i) {
 
             for (var i = 0; i < 5; i++) {
                 if (SizeBarValor[i] < sizeBar[i]) SizeBarValor[i] += (sizeBar[i] / 50);
-                DesenharBarras(Canvas.width / 4 + 100 * i + (10 * i), SizeBarValor[i]);
+                DesenharBarras(Canvas.width / 4 + ((100 * VS) * i + (10 * i)), SizeBarValor[i]);
             }
             for (var i = 0; i < 5; i++) {
                 if (SizeBarValor[i + 5] < 250) SizeBarValor[i + 5] += 5
-                DesenharBarras(Canvas.width / 8 * 5 + 100 * i + (10 * i), SizeBarValor[i + 5]);
+                DesenharBarras(Canvas.width / 8 * 5 + (100 * VS) * i + (10 * i), SizeBarValor[i + 5]);
             }
             ctx.beginPath()
-            ctx.moveTo(Canvas.width / 4 - 300, Canvas.height - 250);
-            ctx.lineTo(Canvas.width / 8 * 5 + 550, Canvas.height - 250)
+            ctx.moveTo(Canvas.width / 4 - 300, Canvas.height - 250 * VS);
+            ctx.lineTo(Canvas.width / 8 * 5 + 550, Canvas.height - 250 * VS)
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 5
             ctx.stroke()
@@ -380,9 +387,25 @@ function Grafico(i) {
 
             ctx.restore()
             break;
+        case 3:
+            var [x, y] = [Canvas.width / 10 * 2, Canvas.height / 10 * 3]
+            ctx.font = "30px arial"
+            ctx.strokeStyle = Cores.CianoClaro
+            ctx.lineWidth = 3
+            ctx.beginPath()
+            ctx.moveTo(x, y)
+
+            for (var i = 0; i < 400; i++) {
+                ctx.lineTo(x + (i * 2), y - (En[i] * 200))
+            }
+            ctx.stroke()
+            break;
     }
 }
 function Formula(i) {
+
+    ctx.textBaseline = "alphabetic";
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     switch (i) {
         case 0:
             var [xD, yD] = [Canvas.width / 10 * 2, Canvas.height / 10 * 3]

@@ -1,4 +1,4 @@
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, VS } from "../files.js";
 let exI = null;
 function ResetFundo() {
     Fundo = null;
@@ -6,9 +6,10 @@ function ResetFundo() {
 var Fundo = null;
 export function SlideResolucaoContinua(i) {
 
-
     Fundo = fundo(8, Fundo);
 
+    ctx.save()
+    ctx.scale(VS, VS)
     Texto(
         Cores.Titulo, FontSizes.Titulo,
         Fontes.Titulo, "center",
@@ -51,7 +52,7 @@ export function SlideResolucaoContinua(i) {
         );
         formula(2)
     }
-
+    ctx.restore()
 }
 
 function formula(i) {
@@ -61,7 +62,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10 * 2.2, Canvas.height / 10 * 3.5]
+        var [x, y] = [Canvas.width / 10 / VS * 2.2, Canvas.height / 10 / VS * 3.5]
         ctx.save()
         ctx.scale(1.3, 1.3)
         x /= 1.3
@@ -109,7 +110,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10 * 2.2, Canvas.height / 10 * 3.5]
+        var [x, y] = [Canvas.width / 10 / VS * 2.2, Canvas.height / 10 / VS * 3.5]
         ctx.save()
         ctx.scale(1.2, 1.2)
         x /= 1.2
@@ -168,7 +169,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10 * 2.2, Canvas.height / 10 * 3.5]
+        var [x, y] = [Canvas.width / 10/VS * 2.2, Canvas.height / 10/VS * 3.5]
         ctx.save()
         ctx.scale(1.3, 1.3)
         x /= 1.3

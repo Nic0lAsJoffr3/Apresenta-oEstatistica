@@ -6,12 +6,12 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 0;
+export let slide = 36;
 let canPress = true;
 
 
 
-let maxslide = 40;
+let maxslide = 46;
 function PassarSlide(direction) {
     if (direction == 1 && slide < maxslide) slide++;
     else if (direction == -1 && slide > 0) slide--;
@@ -57,10 +57,10 @@ window.addEventListener("keyup", (e) => {
 });
 
 function Update() {
-
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
+    
 
-    if (slide == 39) {
+    if (slide == 45) {
 
         if (!document.getElementById("iframeSimulador")) {
 
@@ -154,12 +154,32 @@ function Update() {
         case 36:
         case 37:
         case 38:
-        case 39: // Fundo 4
+        case 39:
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45: // Fundo 4
             SlideLeiGrandesNumeros(slide - 35);
             break;
-        case 40: // Fundo 7
+        case 46: // Fundo 7
             SlideFontes(slide - 40);
             break;
-    }
+    } 
     requestAnimationFrame(Update);
+   
 }
+export function getScreenScale() {
+    const baseWidth = 1920;
+    const baseHeight = 1080;
+
+    const targetWidth = window.innerWidth;
+    const targetHeight = window.innerHeight;
+
+    const scaleW = targetWidth / baseWidth;
+    const scaleH = targetHeight / baseHeight;
+
+    return Math.min(scaleW, scaleH);
+}
+export const VS = getScreenScale();

@@ -1,4 +1,4 @@
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, Maquina, Chave, ChaveOuro, Maquina2, Chat, Cadeado, AndrawYao, SetaCurvadaVermelha, SetaCurvadaVerde } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, Maquina, Chave, ChaveOuro, Maquina2, Chat, Cadeado, AndrawYao, SetaCurvadaVermelha, SetaCurvadaVerde, VS } from "../files.js";
 
 
 
@@ -9,6 +9,8 @@ function ResetFundo() {
 var Fundo = null;
 export function SlideAplicacaoNaArea(i) {
     Fundo = fundo(1, Fundo);
+    ctx.save()
+    ctx.scale(VS, VS)
     if (i == 0) {
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -48,13 +50,14 @@ export function SlideAplicacaoNaArea(i) {
             imagem(6)
         }
     }
-
+    ctx.restore()
 }
 
 function imagem(i) {
     ctx.imageSmoothingEnabled = false;
     if (i == 0 || i == 0.1) {
-        var [x, y] = [Canvas.width / 20, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width / 20 / VS, Canvas.height / 10 * 2.5 / VS]
+
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
@@ -88,13 +91,13 @@ function imagem(i) {
         ctx.restore()
     }
     if (i == 1) {
-        var [x, y] = [Canvas.width / 2 - 250, Canvas.height / 10 * 2.5]
+        var [x, y] = [(Canvas.width / 2 - 250) / VS, (Canvas.height / 10 * 2.5) / VS]
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
         ctx.strokeRect(x, y, 500, 600)
 
-        imageChat(x + 10, y + 50, 120)
+        imageChat(x + 10, y + 50, 120 / VS)
         ctx.drawImage(Chave, x + 220, y + 60, 90, 90);
         imageSeta(x + 155, y + 150, 25, "#ffe603")
 
@@ -105,7 +108,7 @@ function imagem(i) {
         imageSeta(0, 0, 25, "#ffe603")
         ctx.restore()
 
-        imageChat(x + 370, y + 400, 120)
+        imageChat(x + 370, y + 400, 120 / VS)
 
         ctx.drawImage(Maquina2, x + 25, y + 250, 250, 300);
 
@@ -119,18 +122,19 @@ function imagem(i) {
         ctx.fillStyle = "#fd2424"
         ctx.font = '30px arial'
         ctx.fillText("Criptografar", x + 250, y - 30)
-        ctx.restore()
+
     }
 
     ctx.lineWidth = 2
     if (i == 2) {
-        var [x, y] = [Canvas.width / 1.5, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width / 1.5 / VS, Canvas.height / 10 * 2.5 / VS]
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
+
         ctx.strokeRect(x, y, 500, 600)
 
-        imageChat(x + 10, y + 50, 120)
+        imageChat(x + 10, y + 50, 120 / VS)
         ctx.drawImage(Chave, x + 220, y + 60, 90, 90);
         imageSeta(x + 155, y + 150, 25, "#ffe603")
 
@@ -146,9 +150,9 @@ function imagem(i) {
         imageSeta(0, 0, 25, "#ffe603")
         ctx.restore()
 
-        imageChat(x + 370, y + 400, 120)
+        imageChat(x + 370, y + 400, 120 / VS)
 
-        ctx.drawImage(Maquina2, x + 25, y + 250, 250, 300);
+        ctx.drawImage(Maquina2, (x + 25), (y + 250), 250, 300);
         ctx.save()
         ctx.translate(x + 40, y + 20)
         ctx.rotate(-Math.PI / 8)
@@ -169,13 +173,13 @@ function imagem(i) {
     }
     if (i == 3) {
 
-        var [x, y] = [Canvas.width / 15, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width / 15 / VS, Canvas.height / 10 * 2.5 / VS]
         ctx.textAlign = "left"
         ctx.strokeStyle = "white"
         ctx.fillStyle = "white"
         ctx.lineWidth = 3
         ctx.font = "100px arial"
-        ctx.fillText("Next-bit Test", Canvas.width / 20, Canvas.height / 10)
+        ctx.fillText("Next-bit Test", Canvas.width / 20 / VS, Canvas.height / 10 / VS)
         ctx.drawImage(AndrawYao, x, y, 500, 500)
         ctx.textAlign = "center"
         ctx.font = "60px arial"
@@ -183,7 +187,7 @@ function imagem(i) {
         ctx.fillText("1982", x + 250, y + 610)
     }
     if (i == 4) {
-        var [x, y] = [Canvas.width / 15 * 7, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width / 15 * 7 / VS, Canvas.height / 10 * 2.5 / VS]
         ctx.textAlign = "left"
         ctx.strokeStyle = "white"
         ctx.fillStyle = "white"
@@ -211,22 +215,22 @@ function imagem(i) {
 
     }
     if (i == 5) {
-        var [x, y] = [Canvas.width / 20, Canvas.height / 10 * 2.5]
-        x /= 1.2
-        y /= 1.2
+        var [x, y] = [(Canvas.width / 20) / VS, (Canvas.height / 10 * 2.5) / VS]
+        x /= (1.2 / VS)
+        y /= (1.2 / VS)
         ctx.save()
-        ctx.scale(1.2, 1.2)
+        ctx.scale((1.2 / VS), (1.2 / VS))
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
-        ctx.drawImage(Maquina, x + 25, y + 50, 400, 400);
-        ctx.drawImage(Chave, x + 300, y + 320, 60, 60);
+        ctx.drawImage(Maquina, x + 25 * VS, y + 150 * VS, 400 * VS, 400 * VS);
+        ctx.drawImage(Chave, x + 300 * VS, y + 420 * VS, 60 * VS, 60 * VS);
 
         ctx.save()
         ctx.font = "30px arial"
         ctx.fillStyle = "#ffe603"
-        y -= 150
-        x += 140
+        y -= 150 * VS
+        x += 140 * VS
         ctx.fillText("C", x, y)
         ctx.fillStyle = "#fd2424"
         ctx.fillText("P", x, y + 30)
@@ -248,26 +252,27 @@ function imagem(i) {
         ctx.restore()
     }
     if (i == 6) {
-        var [x, y] = [Canvas.width - Canvas.width / 20 - 600, Canvas.height / 10 * 2.5]
-        x /= 1.2
-        y /= 1.2
+        var [x, y] = [((Canvas.width) - Canvas.width / 20 - 600*VS), (Canvas.height / 10 * 2.5)]
+        x /= (1.2)
+        y /= (1.2)
+        
         ctx.save()
-        ctx.scale(1.2, 1.2)
+        ctx.scale(1.2 / VS, 1.2 / VS)
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
-        ctx.drawImage(Maquina, x + 25, y + 50, 400, 400);
-        ctx.drawImage(ChaveOuro, x + 300, y + 320, 60, 60);
+        ctx.drawImage(Maquina, x + 25 * VS, y + 150 * VS, 400 * VS, 400 * VS);
+        ctx.drawImage(ChaveOuro, x + 300 * VS, y + 420 * VS, 60 * VS, 60 * VS);
         ctx.save()
-        ctx.translate(x - 325, y + 350)
+        ctx.translate(x - 325 * VS, y + 350 * VS)
         ctx.rotate(-Math.PI / 2)
         imageSeta(0, 0, 70, "#ffe633")
         ctx.restore()
         ctx.save()
         ctx.font = "30px arial"
         ctx.fillStyle = "#ffe603"
-        y -= 150
-        x += 140
+        y -= 150 * VS
+        x += 140 * VS
         ctx.fillText("C", x, y)
         ctx.fillStyle = "#3bd336"
         ctx.fillText("S", x, y + 30)
@@ -300,21 +305,21 @@ function imageChat(x, y, size) {
     const temp = document.createElement("canvas");
     const tctx = temp.getContext("2d");
 
-    temp.width = size;
-    temp.height = size;
+    temp.width = size * VS;
+    temp.height = size * VS;
 
-    tctx.drawImage(Chat, 0, 0, size, size);
+    tctx.drawImage(Chat, 0, 0, size * VS, size * VS);
 
     tctx.globalCompositeOperation = "source-in";
 
     tctx.fillStyle = "white";
-    tctx.fillRect(0, 0, size, size);
+    tctx.fillRect(0, 0, size * VS, size * VS);
 
     ctx.drawImage(temp, x, y);
 }
 
 function imageSeta(x, y, size, color) {
-
+    size *= VS
     ctx.beginPath();
 
     ctx.moveTo(x + size * 0.5, y + size * 0);

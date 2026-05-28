@@ -1,4 +1,4 @@
-import { ctx, Cores, Fontes, Canvas, Texto, fundo, FontSizes } from "../files.js";
+import { ctx, Cores, Fontes, Canvas, Texto, fundo, FontSizes, VS } from "../files.js";
 
 let animBarNames = new Array(7).fill(0);
 let animTextNames = [
@@ -27,6 +27,9 @@ export function SlideIntroducao(i) {
     }
     Fundo = fundo(6, Fundo);
 
+    ctx.save()
+
+    ctx.scale(VS, VS)
     Texto(
         Cores.Titulo, FontSizes.Titulo,
         Fontes.Titulo, "center",
@@ -37,7 +40,7 @@ export function SlideIntroducao(i) {
     // Desenhar as Barras Dos Nomes
     for (var i = 0; i < 7; i++) {
         ctx.fillStyle = Cores.CianoClaro;
-        var y0 = Canvas.height / 4 + i * 70 + (i * 15)
+        var y0 = (Canvas.height / 4 + i * (70*VS) + (i * 15)) / VS
         ctx.fillRect(0, y0, 20 + animBarNames[i], 70)
         ctx.font = " 50px " + Fontes.NormalText
         ctx.textAlign = "left"
@@ -56,4 +59,5 @@ export function SlideIntroducao(i) {
             }
         }
     }
+    ctx.restore()
 }

@@ -1,4 +1,4 @@
-import { Canvas, ctx } from "./files.js";
+import { Canvas, ctx, VS } from "./files.js";
 
 export const Cores = {
     Titulo: " #FFF",
@@ -14,17 +14,7 @@ export const Fontes = {
     NormalText: " Roboto ",
     ExemploText: " Roboto ",
 }
-export function GetFontSizes(canvas) {
 
-    const base = Math.min(canvas.width, canvas.height);
-
-    return {
-        Titulo: `${base * 0.08}px`,
-        SubTitulo: `${base * 0.06}px`,
-        NormalText: `${base * 0.04}px`,
-        ExemploText: `${base * 0.03}px`,
-    };
-}
 export const FontSizes = {
     Titulo: " 80px ",
     SubTitulo: " 60px ",
@@ -39,9 +29,9 @@ export function Texto(Cor, size, font, align, text, [x, y], lineSpace = 40) {
     ctx.fillStyle = Cor;
     ctx.font = size + " " + font;
     ctx.textAlign = align;
-    for (let i = 0; i < linhas.length; i++) {
-        ctx.fillText(linhas[i], x, y);
-        y += lineSpace;
+    for (var i = 0; i < linhas.length; i++) {
+        ctx.fillText(linhas[i], x / VS, y / VS);
+        y += lineSpace*VS;
     }
 }
 
@@ -85,7 +75,7 @@ export function fundo(index, Fundo) {
 
                 const cols_1 = 55;
 
-                for (let i_1 = 0; i_1 < cols_1; i_1++) {
+                for (var i_1 = 0; i_1 < cols_1; i_1++) {
 
                     Fundo.crypto1_1.push({
 
@@ -139,11 +129,11 @@ export function fundo(index, Fundo) {
             Fundo.t1_1 += 0.003;
 
             ctx.textAlign = "center";
-            ctx.textBaseline = "top";
+
 
             // rede criptográfica
             for (
-                let i_1 = 0;
+                var i_1 = 0;
                 i_1 < Fundo.crypto1_1.length;
                 i_1++
             ) {
@@ -152,7 +142,7 @@ export function fundo(index, Fundo) {
                     Fundo.crypto1_1[i_1];
 
                 for (
-                    let j_1 = i_1 + 1;
+                    var j_1 = i_1 + 1;
                     j_1 < Fundo.crypto1_1.length;
                     j_1++
                 ) {
@@ -197,7 +187,7 @@ export function fundo(index, Fundo) {
             }
 
             // colunas criptográficas
-            for (let s_1 of Fundo.crypto1_1) {
+            for (var s_1 of Fundo.crypto1_1) {
 
                 s_1.y_1 += s_1.speed_1;
 
@@ -210,7 +200,7 @@ export function fundo(index, Fundo) {
                 }
 
                 for (
-                    let i_1 = 0;
+                    var i_1 = 0;
                     i_1 < s_1.chars_1.length;
                     i_1++
                 ) {
@@ -252,7 +242,7 @@ export function fundo(index, Fundo) {
                             ];
                     }
 
-                    let alpha_1 =
+                    var alpha_1 =
 
                         0.015 +
 
@@ -314,7 +304,7 @@ export function fundo(index, Fundo) {
             }
 
             // blocos hash
-            for (let i_1 = 0; i_1 < 8; i_1++) {
+            for (var i_1 = 0; i_1 < 8; i_1++) {
 
                 const x_1 =
                     (Canvas.width / 8) * i_1;
@@ -368,14 +358,14 @@ export function fundo(index, Fundo) {
 
             Fundo.t += 0.002;
 
-            let w2 = Canvas.width;
-            let h2 = Canvas.height;
+            var w2 = Canvas.width;
+            var h2 = Canvas.height;
 
 
-            let lightX = w2 * (0.5 + Math.sin(Fundo.t) * 0.2);
-            let lightY = h2 * (0.5 + Math.cos(Fundo.t * 0.8) * 0.2);
+            var lightX = w2 * (0.5 + Math.sin(Fundo.t) * 0.2);
+            var lightY = h2 * (0.5 + Math.cos(Fundo.t * 0.8) * 0.2);
 
-            let grad = ctx.createRadialGradient(
+            var grad = ctx.createRadialGradient(
                 lightX, lightY, 50,
                 lightX, lightY, w2 * 0.8
             );
@@ -388,12 +378,12 @@ export function fundo(index, Fundo) {
             ctx.fillRect(0, 0, w2, h2);
 
 
-            let spacing = 80;
+            var spacing = 80;
 
-            for (let x = 0; x < w2; x += spacing) {
+            for (var x = 0; x < w2; x += spacing) {
 
-                let dist = Math.abs(x - lightX) / w2;
-                let alpha = Math.max(0.03, 0.09 - dist);
+                var dist = Math.abs(x - lightX) / w2;
+                var alpha = Math.max(0.03, 0.09 - dist);
 
                 ctx.strokeStyle = `rgba(0,255,255,${alpha})`;
                 ctx.lineWidth = 1;
@@ -404,10 +394,10 @@ export function fundo(index, Fundo) {
                 ctx.stroke();
             }
 
-            for (let y = 0; y < h2; y += spacing) {
+            for (var y = 0; y < h2; y += spacing) {
 
-                let dist = Math.abs(y - lightY) / h2;
-                let alpha = Math.max(0.03, 0.09 - dist);
+                var dist = Math.abs(y - lightY) / h2;
+                var alpha = Math.max(0.03, 0.09 - dist);
 
                 ctx.strokeStyle = `rgba(0,255,255,${alpha})`;
                 ctx.lineWidth = 1;
@@ -421,7 +411,7 @@ export function fundo(index, Fundo) {
             return Fundo;
 
 
-            
+
         case 3:
 
             if (!Fundo?.particles3) {
@@ -449,10 +439,10 @@ export function fundo(index, Fundo) {
 
             Fundo.t3 += 0.002;
 
-            let w3 = Canvas.width;
-            let h3 = Canvas.height;
+            var w3 = Canvas.width;
+            var h3 = Canvas.height;
 
-            let grad3 = ctx.createRadialGradient(
+            var grad3 = ctx.createRadialGradient(
                 w3 / 2,
                 h3 / 2,
                 0,
@@ -474,27 +464,27 @@ export function fundo(index, Fundo) {
             ctx.fillStyle = grad3;
             ctx.fillRect(0, 0, w3, h3);
 
-            for (let i3 = 0; i3 < Fundo.particles3.length; i3++) {
+            for (var i3 = 0; i3 < Fundo.particles3.length; i3++) {
 
-                let p13 = Fundo.particles3[i3];
+                var p13 = Fundo.particles3[i3];
 
                 for (
-                    let j3 = i3 + 1;
+                    var j3 = i3 + 1;
                     j3 < Fundo.particles3.length;
                     j3++
                 ) {
 
-                    let p23 = Fundo.particles3[j3];
+                    var p23 = Fundo.particles3[j3];
 
-                    let dx3 = p13.x3 - p23.x3;
-                    let dy3 = p13.y3 - p23.y3;
+                    var dx3 = p13.x3 - p23.x3;
+                    var dy3 = p13.y3 - p23.y3;
 
-                    let dist3 =
+                    var dist3 =
                         Math.sqrt(dx3 * dx3 + dy3 * dy3);
 
                     if (dist3 < 120) {
 
-                        let alpha3 =
+                        var alpha3 =
                             (1 - dist3 / 120) * 0.05;
 
                         ctx.strokeStyle =
@@ -587,8 +577,8 @@ export function fundo(index, Fundo) {
             const cx2 = w / 2 + Math.cos(Fundo.t4 * 0.7) * 220;
             const cy2 = h / 2 + Math.sin(Fundo.t4 * 1.1) * 150;
 
-            for (let y = 0; y < h; y += cell) {
-                for (let x = 0; x < w; x += cell) {
+            for (var y = 0; y < h; y += cell) {
+                for (var x = 0; x < w; x += cell) {
 
                     const d1 = Math.hypot(x - cx1, y - cy1);
                     const d2 = Math.hypot(x - cx2, y - cy2);
@@ -654,8 +644,8 @@ export function fundo(index, Fundo) {
             ctx.fillStyle = Cores.CianoClaro + "03";
             ctx.fillRect(0, 0, w, h);
 
-            for (let y = 0; y < h; y += cell) {
-                for (let x = 0; x < w; x += cell) {
+            for (var y = 0; y < h; y += cell) {
+                for (var x = 0; x < w; x += cell) {
 
                     // 🎲 ruído uniforme controlado
                     const noise =
@@ -706,20 +696,20 @@ export function fundo(index, Fundo) {
             const layers = 2;
             const linesPerLayer = 15;
 
-            for (let l = 0; l < layers; l++) {
+            for (var l = 0; l < layers; l++) {
 
                 const speed = 0.2 + l * 0.05;
 
                 ctx.strokeStyle = `rgba(0,240,255,${0.03 + l * 0.008})`;
                 ctx.lineWidth = 1;
 
-                for (let i = 0; i < linesPerLayer; i++) {
+                for (var i = 0; i < linesPerLayer; i++) {
 
                     ctx.beginPath();
 
                     const baseY = (h / linesPerLayer) * i;
 
-                    for (let x = 0; x <= w; x += 20) {
+                    for (var x = 0; x <= w; x += 20) {
 
                         const dx = x - focusX;
                         const dy = baseY - focusY;
@@ -756,7 +746,7 @@ export function fundo(index, Fundo) {
                     fract7: []
                 };
 
-                for (let i = 0; i < 25; i++) {
+                for (var i = 0; i < 25; i++) {
 
                     Fundo.fract7.push({
 
@@ -788,7 +778,7 @@ export function fundo(index, Fundo) {
 
                 const branches = 3;
 
-                for (let i = 0; i < branches; i++) {
+                for (var i = 0; i < branches; i++) {
 
                     const angle =
                         rot +
@@ -828,7 +818,7 @@ export function fundo(index, Fundo) {
                 }
             }
 
-            for (let f of Fundo.fract7) {
+            for (var f of Fundo.fract7) {
 
                 fract(
                     f.x,
@@ -873,7 +863,7 @@ export function fundo(index, Fundo) {
                     "≈"
                 ];
 
-                for (let i = 0; i < 80; i++) {
+                for (var i = 0; i < 80; i++) {
 
                     Fundo.math9.push({
 
@@ -911,7 +901,7 @@ export function fundo(index, Fundo) {
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
 
-            for (let m of Fundo.math9) {
+            for (var m of Fundo.math9) {
 
                 // movimento fluido
                 m.y += m.speed;
@@ -990,12 +980,12 @@ export function fundo(index, Fundo) {
             }
 
             // curvas matemáticas suaves
-            for (let i = 0; i < 5; i++) {
+            for (var i = 0; i < 5; i++) {
 
                 ctx.beginPath();
 
                 for (
-                    let x = 0;
+                    var x = 0;
                     x <= Canvas.width;
                     x += 12
                 ) {
@@ -1104,11 +1094,11 @@ export function CuboDado(x = 0, y = 0, i = 1, size = 0.4) {
 
     path.moveTo(0, 0);
 
-    function dot(xd, yd) {
-        path.moveTo(x + S(xd) + S(10), y + S(yd));
+    function dot(xd_d, yd_d) {
+        path.moveTo(x + S(xd_d) + S(10), y + S(yd_d));
         path.arc(
-            x + S(xd),
-            y + S(yd),
+            x + S(xd_d),
+            y + S(yd_d),
             S(10),
             0,
             Math.PI * 2

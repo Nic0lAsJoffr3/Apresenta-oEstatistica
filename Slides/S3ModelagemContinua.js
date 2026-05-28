@@ -1,5 +1,5 @@
 
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, VS } from "../files.js";
 let exI = null;
 function ResetFundo() {
     Fundo = null;
@@ -7,6 +7,8 @@ function ResetFundo() {
 var Fundo = null;
 export function SlideModelagemContinua(i) {
     Fundo = fundo(2, Fundo);
+    ctx.save()
+    ctx.scale(VS,VS)
     if (i == 0) {
 
         Texto(
@@ -18,7 +20,7 @@ export function SlideModelagemContinua(i) {
         Texto(
             Cores.NormalText, FontSizes.NormalText,
             Fontes.NormalText, "left",
-            "Na modelagem contínua não conseguimos atribuir\nprobabilidade a cada valor individual;\n\n[0 , 1]\n0.1 , 0.2 , 0.3 … 0.9 , 1\n0.01 , 0.02 , 0.03 … 0.09, 1\n\n0 - Ꝏ - 1",
+            "Na modelagem contínua não conseguimos atribuir\nprobabilidade a cada valor individual;\n\n[0 , 1]\n0.1 , 0.2 , 0.3 … 0.9 , 1\n0.01 , 0.02 , 0.03 … 0.09, 1\n0 - Ꝏ - 1",
             [Canvas.width / 10, Canvas.height / 10 * 3], 50
         );
 
@@ -102,6 +104,7 @@ export function SlideModelagemContinua(i) {
 
 
     }
+    ctx.restore()
 }
 function grafico(i) {
     ctx.font = "40px arial"
@@ -109,7 +112,7 @@ function grafico(i) {
     ctx.lineWidth = 2
     ctx.strokeStyle = "white"
     ctx.textAlign = "left"
-    var [x, y] = [Canvas.width / 6, Canvas.height / 10 * 3]
+    var [x, y] = [Canvas.width / 6/VS, Canvas.height / 10/VS * 3]
 
     ctx.save()
     ctx.strokeRect(x, y, 500, 500)
@@ -195,7 +198,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10, Canvas.height / 10 * 2.5]
+        var [x, y] = [Canvas.width / 10/VS, Canvas.height / 10/VS * 2.5]
 
         ctx.save()
         ctx.scale(1.3, 1.3)
@@ -280,7 +283,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10 * 6, Canvas.height / 10 * 3]
+        var [x, y] = [Canvas.width / 10/VS * 6, Canvas.height / 10/VS * 3]
 
         ctx.save()
         ctx.scale(1.2, 1.2)
@@ -344,7 +347,7 @@ function formula(i) {
         ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.textAlign = "left"
-        var [x, y] = [Canvas.width / 10 * 1.5, Canvas.height / 10 * 3]
+        var [x, y] = [Canvas.width / 10/VS * 1.5, Canvas.height / 10/VS * 3]
 
         ctx.save()
         ctx.scale(1.4, 1.4)

@@ -1,12 +1,13 @@
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, VS } from "../files.js";
 let exI = null;
 function ResetFundo() {
     Fundo = null;
 }
 var Fundo = null;
 export function SlideModelagemDiscreta(i) {
-
     Fundo = fundo(2, Fundo);
+    ctx.save()
+    ctx.scale(VS, VS)
     if (i == 0) {
         Texto(
             Cores.Titulo, FontSizes.Titulo,
@@ -30,10 +31,10 @@ export function SlideModelagemDiscreta(i) {
 
         ctx.beginPath()
 
-        ctx.arc(Canvas.width / 10 * 1.5 - 20, Canvas.height / 10 * 4.5 - 12, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width / 10 * 1.5 - 20, Canvas.height / 10 * 4.5 - 12 + 50, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width / 10 * 1.5 - 20, Canvas.height / 10 * 4.5 - 12 + 100, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width / 10 * 1.5 - 20, Canvas.height / 10 * 4.5 - 12 + 150, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 10 * 1.5 - 20) / VS, (Canvas.height / 10 * 4.5 - 12) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 10 * 1.5 - 20) / VS, (Canvas.height / 10 * 4.5 - 12 + 50) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 10 * 1.5 - 20) / VS, (Canvas.height / 10 * 4.5 - 12 + 100) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 10 * 1.5 - 20) / VS, (Canvas.height / 10 * 4.5 - 12 + 150) / VS, 7, Math.PI / 180, 0)
         ctx.fill()
         Texto(
             Cores.ExemploText, "35px",
@@ -55,13 +56,13 @@ export function SlideModelagemDiscreta(i) {
             Cores.NormalText, "35px",
             Fontes.NormalText, "left",
             "Definir a variável aleatória\nListar os resultados possíveis\nContar o total de possibilidades\nVerificar se todos os resultados possuem a mesma chance",
-            [Canvas.width / 10 * 1.5, Canvas.height / 10 * 2.5], 120
+            [Canvas.width / 10 * 1.5, Canvas.height / 10 * 1.5], 120
         );
         Texto(
             Cores.CianoClaro, "30px",
             Fontes.NormalText, "left",
             "X = resultado do sorteio\n1, 2, 3, ..., 20\nn = 20",
-            [Canvas.width / 10 * 2, Canvas.height / 10 * 2.5 + 50], 120
+            [Canvas.width / 10 * 1.7, Canvas.height / 10 * 1.5 + 50], 120
         );
 
         Texto(
@@ -92,19 +93,19 @@ export function SlideModelagemDiscreta(i) {
             [Canvas.width - 700, Canvas.height / 10 * 3.5], 50
         );
         ctx.beginPath()
-        ctx.arc(Canvas.width / 20 - 20, Canvas.height / 10 * 3.5 - 12, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width / 20 - 20, Canvas.height / 10 * 3.5 - 10 + 50, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width / 20 - 20, Canvas.height / 10 * 3.5 - 10 + 100, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 20 - 20) / VS, (Canvas.height / 10 * 3.5 - 12) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 20 - 20) / VS, (Canvas.height / 10 * 3.5 - 10 + 50) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width / 20 - 20) / VS, (Canvas.height / 10 * 3.5 - 10 + 100) / VS, 7, Math.PI / 180, 0)
         ctx.fill()
 
         ctx.beginPath()
-        ctx.arc(Canvas.width - 700 - 20, Canvas.height / 10 * 3.5 - 12, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width - 700 - 20, Canvas.height / 10 * 3.5 - 10 + 50, 7, Math.PI / 180, 0)
-        ctx.arc(Canvas.width - 700 - 20, Canvas.height / 10 * 3.5 - 10 + 100, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width - 700 - 20) / VS, (Canvas.height / 10 * 3.5 - 12) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width - 700 - 20) / VS, (Canvas.height / 10 * 3.5 - 10 + 50) / VS, 7, Math.PI / 180, 0)
+        ctx.arc((Canvas.width - 700 - 20) / VS, (Canvas.height / 10 * 3.5 - 10 + 100) / VS, 7, Math.PI / 180, 0)
         ctx.fill()
         formula();
     }
-
+    ctx.restore();
 }
 
 function formula() {
@@ -113,12 +114,14 @@ function formula() {
     ctx.lineWidth = 2
     ctx.strokeStyle = "white"
     ctx.textAlign = "left"
-    var [x, y] = [Canvas.width / 20, Canvas.height / 10 * 7.5]
+    var [x, y] = [(Canvas.width / 20) / VS, (Canvas.height / 10 * 8) / VS]
 
     ctx.save()
-    ctx.scale(2.4, 2.4)
-    x /= 2.4
-    y /= 2.4
+    ctx.scale((1.6 / VS), (1.6 / VS))
+
+
+    x /= (1.6 / VS)
+    y /= (1.6 / VS)
     ctx.fillText("P(X = x) =", x, y)
     ctx.fillText("1", x + 150, y - 20)
     ctx.fillText("n", x + 150, y + 20)
@@ -127,10 +130,11 @@ function formula() {
     ctx.lineTo(x + 175, y - 8)
     ctx.stroke()
 
-    var [x, y] = [Canvas.width - 700, Canvas.height / 10 * 7.5]
-    
-    x /= 2.4
-    y /= 2.4
+    var [x, y] = [(Canvas.width - 700)/ VS, (Canvas.height / 10 * 8)/ VS]
+
+
+    x /= (1.6 / VS)
+    y /= (1.6 / VS)
 
     ctx.fillText("P(A) =", x, y)
     ctx.fillText("k", x + 105, y - 20)

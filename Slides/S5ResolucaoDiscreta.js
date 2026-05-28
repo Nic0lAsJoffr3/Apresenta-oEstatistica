@@ -1,13 +1,14 @@
-import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
+import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, VS } from "../files.js";
 let exI = null;
 function ResetFundo() {
     Fundo = null;
 }
 var Fundo = null;
 export function SlideResolucaoDiscreta(i) {
-    
-    Fundo = fundo(8, Fundo);
 
+    Fundo = fundo(8, Fundo);
+    ctx.save()
+    ctx.scale(VS, VS)
     Texto(
         Cores.Titulo, FontSizes.Titulo,
         Fontes.Titulo, "center",
@@ -38,6 +39,7 @@ export function SlideResolucaoDiscreta(i) {
     else if (i == 3) {
         formula(1);
     }
+    ctx.restore()
 }
 
 function formula(i) {
@@ -50,8 +52,9 @@ function formula(i) {
         var [x, y] = [Canvas.width / 10, Canvas.height / 10 * 3]
         ctx.save()
         ctx.scale(1.2, 1.2)
-        x /= 1.2
-        y /= 1.2
+        x /= 1.2 * VS
+        y /= 1.2 * VS
+
         ctx.fillText("Total de resultados possíveis: 20", x, y)
         y += 60
         ctx.fillText("Casos favoráveis: 10", x, y)
@@ -79,8 +82,8 @@ function formula(i) {
         var [x, y] = [Canvas.width / 10, Canvas.height / 10 * 3]
         ctx.save()
         ctx.scale(1.2, 1.2)
-        x /= 1.2
-        y /= 1.2
+        x /= 1.2* VS
+        y /= 1.2* VS
         ctx.fillText("Total de resultados possíveis: 6", x, y)
         y += 60
         ctx.fillText("Casos favoráveis: 1", x, y)
