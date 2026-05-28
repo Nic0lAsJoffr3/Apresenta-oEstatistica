@@ -5,10 +5,7 @@ function ResetFundo() {
 }
 var Fundo = null;
 export function SlideResolucaoDiscreta(i) {
-    if (exI != i) {
-        exI = i
-        ResetFundo();
-    }
+    
     Fundo = fundo(8, Fundo);
 
     Texto(

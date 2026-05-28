@@ -4,6 +4,7 @@ export const Cores = {
     Titulo: " #FFF",
     SubTitulo: " #FFF",
     NormalText: " #FFF",
+    ExemploText: " #FFF",
     CianoClaro: " #00f0ff",
     Red: "#cf222a"
 }
