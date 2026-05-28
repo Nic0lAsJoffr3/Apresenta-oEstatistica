@@ -91,7 +91,7 @@ function imagem(i) {
         ctx.restore()
     }
     if (i == 1) {
-        var [x, y] = [(Canvas.width / 2 - 250) / VS, (Canvas.height / 10 * 2.5) / VS]
+        var [x, y] = [Canvas.width / 20 / VS + (Canvas.width/3/VS), Canvas.height / 10 * 2.5 / VS]
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
@@ -127,7 +127,7 @@ function imagem(i) {
 
     ctx.lineWidth = 2
     if (i == 2) {
-        var [x, y] = [Canvas.width / 1.5 / VS, Canvas.height / 10 * 2.5 / VS]
+        var [x, y] = [Canvas.width / 20 / VS + (Canvas.width/3/VS)*2, Canvas.height / 10 * 2.5 / VS]
         ctx.textAlign = "center"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 3
@@ -255,7 +255,13 @@ function imagem(i) {
         var [x, y] = [((Canvas.width) - Canvas.width / 20 - 600*VS), (Canvas.height / 10 * 2.5)]
         x /= (1.2)
         y /= (1.2)
-        
+
+         ctx.save()
+        ctx.translate(Canvas.width/VS /2 -100/VS, y + 350 )
+        ctx.rotate(-Math.PI / 2)
+        imageSeta(0, 0, 100/VS, "#ffe633")
+        ctx.restore()
+
         ctx.save()
         ctx.scale(1.2 / VS, 1.2 / VS)
         ctx.textAlign = "center"
@@ -263,11 +269,7 @@ function imagem(i) {
         ctx.lineWidth = 3
         ctx.drawImage(Maquina, x + 25 * VS, y + 150 * VS, 400 * VS, 400 * VS);
         ctx.drawImage(ChaveOuro, x + 300 * VS, y + 420 * VS, 60 * VS, 60 * VS);
-        ctx.save()
-        ctx.translate(x - 325 * VS, y + 350 * VS)
-        ctx.rotate(-Math.PI / 2)
-        imageSeta(0, 0, 70, "#ffe633")
-        ctx.restore()
+       
         ctx.save()
         ctx.font = "30px arial"
         ctx.fillStyle = "#ffe603"

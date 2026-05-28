@@ -84,21 +84,21 @@ export function SlideLeiGrandesNumeros(i) {
             Cores.Red, FontSizes.NormalText,
             Fontes.NormalText, "right",
             "Valor Esperado",
-            [Canvas.width / 4, (Canvas.height - 275)]
+            [Canvas.width / 4 * VS, (Canvas.height / 4 * 3 * VS)]
         );
 
         Texto(
             Cores.CianoClaro, FontSizes.NormalText,
             Fontes.NormalText, "center",
             "Poucas Amostras",
-            [(Canvas.width / 4 + 275), Canvas.height - 480]
+            [(Canvas.width / 2 / 1.3 * VS), Canvas.height - 480]
         );
 
         Texto(
             Cores.CianoClaro, FontSizes.NormalText,
             Fontes.NormalText, "center",
             "Muitas Amostras",
-            [(Canvas.width / 8 * 5 + 275), Canvas.height - 480]
+            [(Canvas.width / 2 * 1.5 * VS), Canvas.height - 480]
         );
 
     }
@@ -252,51 +252,45 @@ function Grafico(i) {
             for (var i = 0; i < 6; i++) {
                 if (SizeBarValor2[i] < 250) SizeBarValor2[i] += Math.random() * 5
                 else SizeBarValor2[i] = 250
-                DesenharBarras((Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i), SizeBarValor2[i], 50);
-                Texto(
-                    Cores.CianoClaro, FontSizes.ExemploText,
-                    Fontes.ExemploText, "center",
-                    (i + 1).toString(),
-                    [(Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i) + 50, Canvas.height - 15]
-                )
+                DesenharBarras((Canvas.width * VS + (100 * VS) * 6) / 16 + (100 * VS) * i + (10 * i), SizeBarValor2[i], 50);
+                ctx.font = FontSizes.ExemploText + Fontes.ExemploText
+                ctx.fillStyle = Cores.CianoClaro
+                ctx.textAlign = "center"
+                ctx.fillText((i + 1).toString(), ((Canvas.width * VS + (100 * VS) * 6) / 16 + (100 * VS) * i + (10 * i) + (50 * VS)), (Canvas.height - 15 * VS))
             }
             for (var i = 0; i < 10; i++) {
                 if (SizeBarValor3[i] < 250) SizeBarValor3[i] += Math.random() * (3 + (i + 1) / 3)
                 else SizeBarValor3[i] = 250
-                Texto(
-                    Cores.CianoClaro, "20px",
-                    Fontes.ExemploText, "center",
-                    "" + ((-i + 10) / 10).toString(),
-                    [Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * i + (20 * i) - 60), Canvas.height - 15]
-                )
-                DesenharBarras(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * i + (20 * i)), SizeBarValor3[i], 50, 50);
+                ctx.font = FontSizes.ExemploText + Fontes.ExemploText
+                ctx.fillStyle = Cores.CianoClaro
+                ctx.textAlign = "center"
+                ctx.fillText(((-i + 10) / 10).toString(), Canvas.width - ((Canvas.width + (50 * VS) * 10) / 16 + (50 * VS) * i + (20 * i) - 60 * VS), (Canvas.height - 15 * VS))
+                DesenharBarras(Canvas.width - ((Canvas.width + (50 * VS) * 10) / 16 + 50 * VS * i + (20 * i)), SizeBarValor3[i], 50, 50);
             }
+            ctx.font = FontSizes.ExemploText + Fontes.ExemploText
+            ctx.fillStyle = Cores.CianoClaro
+            ctx.textAlign = "center"
 
-            Texto(
-                Cores.CianoClaro, "20px",
-                Fontes.ExemploText, "center",
-                "0",
-                [Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * i + (20 * i) - 60), Canvas.height - 15]
-            )
+            ctx.fillText("0", Canvas.width - ((Canvas.width + (50 * VS) * 10) / 16 + (50 * VS) * i + (20 * i) - 60 * VS), Canvas.height - 15 * VS)
 
 
             ctx.beginPath()
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 3
-            ctx.moveTo((Canvas.width + 55.5 * 6) / 16 + (100 * 6 + (10 * 6) + 25) / 2, Canvas.height - 25)
-            ctx.lineTo((Canvas.width + 55.5 * 6) / 16 + (100 * 6 + (10 * 6) + 25) / 2, Canvas.height - 315)
+            ctx.moveTo((Canvas.width * VS + (55.5 * VS) * 6) / 16 + ((100 * VS) * 6 + (10 * 6) + (25 * VS)) / 2, Canvas.height - 25)
+            ctx.lineTo((Canvas.width * VS + (55.5 * VS) * 6) / 16 + ((100 * VS) * 6 + (10 * 6) + (25 * VS)) / 2, Canvas.height - (325*VS))
             ctx.stroke()
             ctx.beginPath()
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 4
-            ctx.moveTo(Canvas.width - ((Canvas.width - 40 * 10) / 16 + (50 * 10 + (20 * 10) + 85)) / 2, Canvas.height - 325)
-            ctx.lineTo(Canvas.width - ((Canvas.width - 40 * 10) / 16 + (50 * 10 + (20 * 10) + 85)) / 2, Canvas.height - 45)
+            ctx.moveTo(Canvas.width - ((Canvas.width - 50 * 10) / 16 + ((50 * VS) * 10 + (20 * 10) + 85)) / 2, Canvas.height - (325*VS))
+            ctx.lineTo(Canvas.width - ((Canvas.width - 50 * 10) / 16 + ((50 * VS) * 10 + (20 * 10) + 85)) / 2, Canvas.height - 45)
             ctx.stroke()
             ctx.beginPath()
             ctx.strokeStyle = Cores.CianoClaro
             ctx.lineWidth = 3
-            ctx.moveTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * 0 + (20 * 0) - 70), Canvas.height - 40)
-            ctx.lineTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * 10 + (20 * 10) - 45), Canvas.height - 40)
+            ctx.moveTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + (20 * 0) - 70), Canvas.height - 40)
+            ctx.lineTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + (50 * VS) * 10 + (20 * 10) - 45), Canvas.height - 40)
             ctx.stroke()
             break;
         case 2:
@@ -322,25 +316,21 @@ function Grafico(i) {
             for (var i = 0; i < 6; i++) {
                 if (SizeBarValor4[i] < SizeBarBaseValue[i]) SizeBarValor4[i] += Math.random() * 5
                 else SizeBarValor4[i] = SizeBarBaseValue[i]
-                DesenharBarras((Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i), SizeBarValor4[i], 50);
-                Texto(
-                    Cores.CianoClaro, FontSizes.ExemploText,
-                    Fontes.ExemploText, "center",
-                    (i + 1).toString(),
-                    [(Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i) + 50, Canvas.height - 15]
-                )
-                Texto(
-                    Cores.CianoClaro, FontSizes.ExemploText,
-                    Fontes.ExemploText, "center",
-                    Math.round(SizeBarValor4[i]).toString(),
-                    [(Canvas.width + 100 * 6) / 16 + 100 * i + (10 * i) + 50, Canvas.height - SizeBarValor4[i] - 60]
-                )
+                DesenharBarras((Canvas.width + (100*VS) * 6) / 16 + (100*VS) * i + (10 * i), SizeBarValor4[i], 50);
+
+
+                ctx.font=  FontSizes.ExemploText, Fontes.ExemploText
+                ctx.textAlign = "center"
+                ctx.fillText((i + 1).toString(),(Canvas.width + (100*VS) * 6) / 16 + (100*VS) * i + (10 * i) + (50*VS), Canvas.height - 15)
+                ctx.fillText(Math.round(SizeBarValor4[i]).toString(),(Canvas.width + (100*VS) * 6) / 16 + (100*VS) * i + (10 * i) + (50*VS), Canvas.height - SizeBarValor4[i]*VS - 60)
+                
+                
             }
             ctx.beginPath()
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 3
-            ctx.moveTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 25)
-            ctx.lineTo((Canvas.width + 100 * (6)) / 16 + (100 * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 395)
+            ctx.moveTo((Canvas.width + (100*VS) * (6)) / 16 + ((100*VS) * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 25*VS)
+            ctx.lineTo((Canvas.width + (100*VS) * (6)) / 16 + ((100*VS) * (3.9 * 2) + (10 * 6)) / 2, Canvas.height - 395*VS)
             ctx.stroke()
             ctx.restore()
 
@@ -349,32 +339,26 @@ function Grafico(i) {
             for (var i = 0; i < 10; i++) {
                 if (SizeBarValor5[i] < SizeBarBaseValue2[i]) SizeBarValor5[i] += Math.random() * 5
                 else SizeBarValor5[i] = SizeBarBaseValue2[i]
-                Texto(
-                    Cores.CianoClaro, "20px",
-                    Fontes.ExemploText, "center",
-                    Math.round(SizeBarValor5[i]).toString(),
-                    [Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * (i - 1) + (20 * i)) - 25, Canvas.height - SizeBarValor5[i] - 70]
-                )
-                Texto(
-                    Cores.CianoClaro, "20px",
-                    Fontes.ExemploText, "center",
-                    "" + ((-i + 10) / 10).toString(),
-                    [Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * (i - 1) + (20 * i)), Canvas.height - 15]
-                )
-                DesenharBarras(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * i + (20 * i)), SizeBarValor5[i], 50, 50);
+
+                
+                ctx.font=  "20px "+ Fontes.ExemploText
+                ctx.textAlign = "center"
+                ctx.fillText(((-i + 10) / 10).toString(),Canvas.width - ((Canvas.width + (50*VS) * 10) / 16 + (50*VS) * (i - 1) + (20*VS * i)), Canvas.height - 15*VS)
+                ctx.fillText(Math.round(SizeBarValor5[i]).toString(),Canvas.width - ((Canvas.width + (50*VS) * 10) / 16 + (50*VS) * (i - 1) + (20*VS * i)) - (25*VS), Canvas.height - SizeBarValor5[i]*VS - 70)
+                DesenharBarras(Canvas.width - ((Canvas.width + (50*VS) * 10) / 16 + (50*VS) * i + (20*VS * i)), SizeBarValor5[i], 50, 50);
             }
             ctx.beginPath()
             ctx.strokeStyle = Cores.CianoClaro
             ctx.lineWidth = 3
-            ctx.moveTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * 0 + (20 * 0) - 70), Canvas.height - 40)
-            ctx.lineTo(Canvas.width - ((Canvas.width + 50 * 10) / 16 + 50 * 10 + (20 * 10) - 45), Canvas.height - 40)
+            ctx.moveTo(Canvas.width - ((Canvas.width + (50*VS) * 10) / 16  - 70), Canvas.height - 40)
+            ctx.lineTo(Canvas.width - ((Canvas.width + (50*VS) * 10) / 16 + (50*VS) * 10 + (20 *VS* 10) - 45), Canvas.height - 40)
             ctx.stroke()
 
             ctx.beginPath()
             ctx.strokeStyle = Cores.Red
             ctx.lineWidth = 4
-            ctx.moveTo(Canvas.width - ((Canvas.width - 40 * (10 - 2.95) * 2) / 16 + (50 * (10 - 2.95) * 2 + (20 * (10)) * 2)) / 2, Canvas.height - 390)
-            ctx.lineTo(Canvas.width - ((Canvas.width - 40 * (10 - 2.95) * 2) / 16 + (50 * (10 - 2.95) * 2 + (20 * (10)) * 2)) / 2, Canvas.height - 45)
+            ctx.moveTo(Canvas.width - ((Canvas.width - 25 *VS * ((10*VS) - 2.95) * 2) / 16 + ((50*VS) * (10 - 2.95) * 2 + (20 *VS* (10)) * 2)) / 2, Canvas.height - 390*VS)
+            ctx.lineTo(Canvas.width - ((Canvas.width - 25 *VS* ((10*VS) - 2.95) * 2) / 16 + ((50*VS) * (10 - 2.95) * 2 + (20 * VS*(10)) * 2)) / 2, Canvas.height - 45)
             ctx.stroke()
             Texto(
                 Cores.CianoClaro, "20px",
@@ -408,7 +392,12 @@ function Formula(i) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     switch (i) {
         case 0:
-            var [xD, yD] = [Canvas.width / 10 * 2, Canvas.height / 10 * 3]
+            var [xD, yD] = [Canvas.width / 10 * 2*VS, Canvas.height / 10 * 3]
+            ctx.save()
+            ctx.translate(xD, yD)
+            xD = -50*VS
+            yD = 0
+            ctx.scale(VS, VS)
             ctx.font = "30px arial"
             ctx.fillStyle = "white"
 
@@ -424,9 +413,9 @@ function Formula(i) {
             ctx.lineTo(xD + 80, yD - 10)
             ctx.stroke()
             ctx.textAlign = "left"
-            xD = Canvas.width / 10 * 2
-            yD = Canvas.height / 10 * 4
-
+            
+            xD -= 60
+            yD += 100
 
             ctx.fillText("μ = ", xD, yD)
             xD += 60
@@ -439,10 +428,10 @@ function Formula(i) {
             ctx.moveTo(xD - 5, yD - 10)
             ctx.lineTo(xD + 80, yD - 10)
             ctx.stroke()
+            ctx.restore()
             break;
         case 1:
-            ctx.font = "30px arial"
-            var [xD, yD] = [Canvas.width / 50 * 7, Canvas.height / 10 * 3]
+            
             var xB = 100
             ctx.textAlign = "left"
             xD = (Canvas.width + 100 * 6) / 16

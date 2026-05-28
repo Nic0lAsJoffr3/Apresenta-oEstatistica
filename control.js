@@ -11,7 +11,7 @@ let canPress = true;
 
 
 
-let maxslide = 46;
+let maxslide = 41;
 function PassarSlide(direction) {
     if (direction == 1 && slide < maxslide) slide++;
     else if (direction == -1 && slide > 0) slide--;
@@ -60,7 +60,7 @@ function Update() {
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
     
 
-    if (slide == 45) {
+    if (slide == 40) {
 
         if (!document.getElementById("iframeSimulador")) {
 
@@ -154,17 +154,12 @@ function Update() {
         case 36:
         case 37:
         case 38:
-        case 39:
-        case 40:
-        case 41:
-        case 42:
-        case 43:
-        case 44:
-        case 45: // Fundo 4
+        case 39: // Fundo 4
+        case 40: // Fundo 4
             SlideLeiGrandesNumeros(slide - 35);
             break;
-        case 46: // Fundo 7
-            SlideFontes(slide - 40);
+        case 41: // Fundo 7
+            SlideFontes(slide - 41);
             break;
     } 
     requestAnimationFrame(Update);
