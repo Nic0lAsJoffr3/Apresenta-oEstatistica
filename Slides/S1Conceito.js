@@ -1,7 +1,7 @@
 import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx } from "../files.js";
 
 const Moeda = new Image()
-Moeda.src = "../IMG/moeda.png"
+Moeda.src = "https://nic0lasjoffr3.github.io/Apresenta-oEstatistica/IMG/moeda.png"
 let exI = null;
 function ResetFundo() {
     Fundo = null;
