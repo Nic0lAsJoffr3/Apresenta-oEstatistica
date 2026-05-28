@@ -1,6 +1,7 @@
 import { Canvas, Cores, Fontes, fundo, Texto, FontSizes, ctx, Maquina, Chave, ChaveOuro, Maquina2, Chat, Cadeado, AndrawYao, SetaCurvadaVermelha, SetaCurvadaVerde } from "../files.js";
 
 
+
 let exI = null;
 function ResetFundo() {
     Fundo = null;

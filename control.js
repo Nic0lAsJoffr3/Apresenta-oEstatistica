@@ -1,4 +1,4 @@
-import { SlideIntroducao, SlideConceito, SlideModelagemDiscreta, SlideModelagemContinua, SlideAplicacaoNaArea, SlideResolucaoDiscreta, SlideResolucaoContinua, SlideLeiGrandesNumeros, SlideFontes } from "./files.js";
+import { SlideIntroducao, SlideConceito, SlideModelagemDiscreta, SlideAplicacaoNaAreaContinua, SlideModelagemContinua, SlideAplicacaoNaArea, SlideResolucaoDiscreta, SlideResolucaoContinua, SlideLeiGrandesNumeros, SlideFontes } from "./files.js";
 
 const BODY = document.querySelector("body");
 export const Canvas = document.createElement("canvas");
@@ -6,12 +6,12 @@ Canvas.width = window.innerWidth;
 Canvas.height = window.innerHeight;
 export const ctx = Canvas.getContext("2d");
 
-export let slide = 0;
+export let slide = 33;
 let canPress = true;
 
 
 
-let maxslide = 33;
+let maxslide = 40;
 function PassarSlide(direction) {
     if (direction == 1 && slide < maxslide) slide++;
     else if (direction == -1 && slide > 0) slide--;
@@ -60,7 +60,7 @@ function Update() {
 
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
 
-    if (slide == 32) {
+    if (slide == 39) {
 
         if (!document.getElementById("iframeSimulador")) {
 
@@ -100,7 +100,7 @@ function Update() {
         case 0: //Fundo 6
             SlideIntroducao(slide);
             break;
-        case 1: 
+        case 1:
         case 2:// Fundo 5
             SlideConceito(slide - 1);
             break;
@@ -115,39 +115,50 @@ function Update() {
         case 9: // Fundo 8
             SlideResolucaoDiscreta(slide - 6);
             break;
+
+            break;
         case 10:
         case 11:
         case 12:
         case 13:
-        case 14: // Fundo 2
-            SlideModelagemContinua(slide - 10);
-            break;
+        case 14:
         case 15:
         case 16:
         case 17:
-        case 18: // Fundo 8
-            SlideResolucaoContinua(slide - 15);
+        case 18: // Fundo 1
+            SlideAplicacaoNaArea(slide - 10);
             break;
         case 19:
         case 20:
         case 21:
         case 22:
-        case 23:
+        case 23: // Fundo 2
+            SlideModelagemContinua(slide - 19);
+            break;
         case 24:
         case 25:
         case 26:
-        case 27: // Fundo 1
-            SlideAplicacaoNaArea(slide - 19);
-            break;
+        case 27: // Fundo 8
+            SlideResolucaoContinua(slide - 24);
+            break
         case 28:
         case 29:
         case 30:
         case 31:
-        case 32: // Fundo 4
-            SlideLeiGrandesNumeros(slide - 28);
+        case 32:
+        case 33:
+        case 34:
+            SlideAplicacaoNaAreaContinua(slide - 28)
+            break
+        case 35:
+        case 36:
+        case 37:
+        case 38:
+        case 39: // Fundo 4
+            SlideLeiGrandesNumeros(slide - 35);
             break;
-        case 33: // Fundo 7
-            SlideFontes(slide - 33);
+        case 40: // Fundo 7
+            SlideFontes(slide - 40);
             break;
     }
     requestAnimationFrame(Update);

@@ -215,6 +215,9 @@ function animDado() {
 
 
 function Grafico(i) {
+
+    ctx.textBaseline = "baseline";
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     switch (i) {
         case 0:
             ctx.fillStyle = Cores.CianoClaro
@@ -291,7 +294,7 @@ function Grafico(i) {
             break;
         case 2:
             ctx.save()
-            ctx.translate(0, Canvas.height / 10*1.5)
+            ctx.translate(0, Canvas.height / 10 * 1.5)
             ctx.scale(0.85, 0.85)
             ctx.fillStyle = Cores.CianoClaro
             var SizeBarBaseValue = [
