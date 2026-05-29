@@ -239,7 +239,7 @@ function formula(i) {
 
         y += 40
         ctx.fillStyle = Cores.CianoClaro;
-        ctx.fillText("a    b", x, y)
+        ctx.fillText(" a    b", x, y)
         ctx.fillStyle = "white";
         ctx.fillText("e", x + 24, y)
         ctx.fillText("= Limites Do Intervalo", x + 80, y)
